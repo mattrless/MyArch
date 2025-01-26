@@ -1,0 +1,305 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$theme_fg_color: "@theme_fg_color";
+$theme_bg_color: "@theme_bg_color";
+
+$bg_color: white;
+$widget_bg_color: #CCD0DA;
+$accent_color: #4C4F69;
+$hover_bg_color: #E1E6F0;
+
+$top_height: 2.7rem;
+$bradius: 25px;
+$widget_bradius: 15px;
+$circular_button_bradius: 50%;
+$filler_bars_thickness : 0.65rem;
+$icons_font_size: 1.2rem;
+
+window.TopLeftWindow {
+    
+    //To put the widget on the right position due to exclusivity equals IGNORE
+    .TopLeftSection {        
+        margin-top: #{$filler_bars_thickness + 0.05rem};
+        margin-left: #{$filler_bars_thickness + 0.05rem};
+    }
+
+    .Divisor{
+        background-color: $bg_color;
+        min-height: $filler_bars_thickness;    
+    }
+
+    .TopLeftButtons {
+        background-color: $bg_color;
+        min-height: $top_height;
+        border-radius: 0 0 #{$bradius + 1.7px} 0;
+    }
+    .Button{        
+        background-color: $widget_bg_color;
+        color: $accent_color;
+        border: 0px;
+        min-height: 1.5rem;
+        margin: 0 $filler_bars_thickness #{$filler_bars_thickness + 0.08rem} 0;
+        transition: background-color 0.2s ease-in-out;
+
+        &.AppNameEntry{
+            padding: 0 0.6rem 0 0.6rem;            
+            border-radius: $bradius;
+        }
+        &.AppLauncherButton{            
+            padding: 0 0.54rem 0 0.54rem;
+            border-radius: $circular_button_bradius;
+        }
+        &.DashboardButton{            
+            padding: 0 0.6rem 0 0.6rem;
+            min-width: 5.8rem;
+            border-radius: $bradius;
+
+        }
+        &.StyleButton{
+            padding: 0 0.54rem 0 0.54rem;
+            border-radius: $circular_button_bradius;
+        }
+    }
+
+    .Button > label {
+        font-size: $icons_font_size;
+    }
+
+    .Button:hover {
+        background-color: $hover_bg_color;
+    }
+
+    .AppLauncher{
+        background-color: $bg_color;
+        min-height: 32.65rem;
+        min-width: 29.5rem;
+        padding: 0 $filler_bars_thickness $filler_bars_thickness 0;
+        border-radius: 0 0 $bradius 0;
+
+
+        .AppButton {
+            background-color: $widget_bg_color;
+            border-radius: #{$bradius - 8px};
+
+            icon {
+                font-size: 3rem;
+                margin-right: .3rem;
+            }
+
+            label.name {
+                font-weight: bold;
+                font-size: 1.1rem;
+                color: $accent_color;
+            }
+
+            label.description {
+                font-weight: lighter;
+                color: $accent_color;
+            }
+        }
+    }
+    
+    //vexpand
+    .Dashboard {
+        background-color: $bg_color;
+        min-width: 28rem;
+        padding: 0 #{$filler_bars_thickness + 0.06rem} $filler_bars_thickness 0;
+        border-radius: 0 0 $bradius 0;
+
+        .WhoamiBox {
+            margin: $filler_bars_thickness;
+
+            .ProfileImage {
+                min-width: 4.2rem;
+                min-height: 4.2rem;
+                border-radius: 100%;
+
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+
+            }
+
+            .Divider {
+                min-width: 0.25rem;
+                background-color: $widget_bg_color;
+                border-radius: 50px;
+                margin: 0.5rem $filler_bars_thickness 0.5rem #{$filler_bars_thickness * 1.5};
+            }
+
+            .UserInfo {
+                margin-top: $filler_bars_thickness;
+                margin-left: $filler_bars_thickness;
+    
+                label {
+                    font-size: 18px;
+                    color: $accent_color;
+                }
+            }
+        }
+
+        .NetInfoButton {
+            margin-top: $filler_bars_thickness;
+            background-color: $widget_bg_color;
+            border-radius: $widget_bradius;
+            
+            .IpSpeed {
+                margin: 0.2rem 4rem $filler_bars_thickness 4rem;
+            }
+            .Ip {
+                margin-top: $filler_bars_thickness;
+                color: $accent_color;
+                font-size: 20px;
+            }
+            .NetSpeed {
+                color: $accent_color;
+                font-size: 16px;
+            }
+
+            .NetInfoDivider {
+                min-width: 0.25rem;
+                background-color: $bg_color;
+                border-radius: 50px;
+                margin: 0.5rem $filler_bars_thickness 0.5rem #{$filler_bars_thickness * 1.5};
+            }
+            
+            .NetTypeIcon {
+                margin: $filler_bars_thickness 1.6rem $filler_bars_thickness 1rem;
+                
+            } 
+            .NetTypeIcon > label {
+                color: $accent_color;
+                font-size: 50px;
+            }            
+            
+        }
+
+        .NetInfoButton:hover {
+            background-color: $hover_bg_color;
+        }
+        
+        .SysUsage {
+            margin-top: $filler_bars_thickness;
+            background-color: $bg_color;
+            border-radius: $widget_bradius;
+
+            circularprogress {
+                color: $accent_color;
+                background-color: $widget_bg_color;
+                min-width: 80px;
+                min-height: 80px;
+            }
+
+            .RamUsage, .CpuUsage, .DiskUsage {
+                margin: $filler_bars_thickness;
+                label {
+                    color: $accent_color;
+                    font-size: 40px;
+                }
+            }
+
+            .RamUsage {
+                margin-left: 2rem;
+            }
+
+            .DiskUsage {
+                margin-right: 2rem;
+            }
+        }
+        
+        .QuickNote {
+            margin-top: $filler_bars_thickness;
+            background-color: $widget_bg_color;
+            border-radius: $widget_bradius;
+
+            .Title {
+                min-height: 2rem;
+                margin-left: $filler_bars_thickness;
+                margin-right: $filler_bars_thickness;
+                .QNLabel {
+                    color: $accent_color;
+                    padding: 0 0.6rem 0 0.6rem;
+                    font-size: $icons_font_size;                    
+                }
+
+                .ClearSave {
+                    background-color: transparent;
+                    color: $accent_color;
+                    border: 0px;
+                    padding: 0;
+                    transition: color 0.3s ease-in-out;
+                }
+                .ClearSave > label {
+                    font-size: $icons_font_size;
+                }
+
+                .ClearSave:hover {
+                    color: $bg_color;
+                }
+            }
+
+            .Content {
+                padding: 4px;
+                margin: 2px;
+                min-height: 14rem;
+                background-color: $bg_color;
+                border-radius: 0 0 $widget_bradius $widget_bradius;
+
+                scrollable{
+                    min-height: 14rem;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+/*   MISC   */
+
+window.TopSpacer {
+    
+    .TransparentSpacer {
+        transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+        background-color: transparent;
+        min-height: $top_height;
+    }
+
+    .ColoredSpacer {
+        transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+        background-color: $bg_color;
+        min-height: $top_height;
+    }
+}
+
+window.FillerBar {
+    background-color: $bg_color;
+    
+    .LeftRightBox {        
+        min-width: $filler_bars_thickness;
+    }
+
+    .TopBottomBox {        
+        min-height: $filler_bars_thickness;
+    }
+}
+
+.CloseArea {    
+    background-color: transparent;    
+}
+
+.Corner {
+    background-color: $bg_color;
+    border-radius: #{$bradius - 4.8px};
+}
+.WindowCorner {
+    background-color: $bg_color;
+    border-radius: $bradius;
+}
+.TransparentSpacerCorner {
+    margin-top: 0;
+}
+.ColoredSpacerCorner {
+    margin-top: 2.75rem;
+}

@@ -1,0 +1,35 @@
+import { App } from "astal/gtk3"
+import style from "./style.scss"
+import TopSpacer from "./widget/common/TopSpacer"
+import { LeftFillerBar, TopFillerBar, RightFillerBar, BottomFillerBar } from "./widget/common/FillerBars"
+import TopLeftWindow from "./widget/TopLeft/TopLeftWindow"
+import CloseWindowArea from "./widget/common/CloseWindowArea"
+import { OnClickAppLauncherButton } from "./widget/TopLeft/BarWidgets"
+
+App.start({
+    css: style,
+    main() {                
+        App.get_monitors().map((gdkmonitor) => {
+            
+            TopSpacer(gdkmonitor);
+            
+            CloseWindowArea(gdkmonitor);
+            TopLeftWindow(gdkmonitor);            
+
+            TopFillerBar(gdkmonitor);
+            LeftFillerBar(gdkmonitor);
+            RightFillerBar(gdkmonitor);
+            BottomFillerBar(gdkmonitor);
+            
+        });
+        
+    },
+    //To toggle my no window widgets
+    requestHandler(request: string, res: (response: any) => void) {
+        if (request == "OpenAppLauncher") {
+            OnClickAppLauncherButton();
+            return res("done")
+        }
+        res("unknown command")
+    },
+})
