@@ -1,7 +1,7 @@
 import { App, Astal, Gdk, Gtk } from "astal/gtk3";
 import Apps from "gi://AstalApps";
 import { AppNameText, FirstApp, AppLauncherVisible, WindowCornerStyle } from "../common/Variables";
-import { OnClickCloseButton } from "../TopLeft/BarWidgets";
+import { OnClickCloseButton } from "./BarWidgets";
 import { bind } from "astal/binding";
 import {
     WindowTopLeftCorner,

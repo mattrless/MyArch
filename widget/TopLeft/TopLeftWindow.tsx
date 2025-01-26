@@ -1,10 +1,10 @@
 import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk3"
-import { TopLeftButtons } from "../TopLeft/BarWidgets"
+import { TopLeftButtons } from "./BarWidgets"
 import { TopLeftWindowVisible, TopLeftCurrentWindow, Keymode } from "../common/Variables"
 import AppLauncher from "./AppLauncher"
 import Dashboard from "./Dashboard"
 import { bind } from "astal/binding"
-import { OnClickCloseButton } from "../TopLeft/BarWidgets";
+import { OnClickCloseButton } from "./BarWidgets";
 
 const SLIDER_DURATION = 200
 const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor
@@ -49,7 +49,7 @@ export default function (gdkmonitor: Gdk.Monitor) {
                     </revealer>
                 </box>
 
-                <box></box>
+                <box/>
 
                 <TopLeftButtons valign={END} />
             </centerbox>

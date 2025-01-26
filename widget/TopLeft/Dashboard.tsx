@@ -3,7 +3,7 @@ import Apps from "gi://AstalApps";
 import { speeds } from './NetSpeed'
 import { WindowTopLeftCorner } from "../common/Corners";
 import { bind } from "astal/binding"
-import { OnClickCloseButton } from "../TopLeft/BarWidgets";
+import { OnClickCloseButton } from "./BarWidgets";
 import { exec } from "astal/process";
 import {
         HomePath,
