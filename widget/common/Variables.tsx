@@ -154,3 +154,8 @@ UsedDisk.poll(2000, () => {
 });
 /* Dashboard/QuickNote */
 export const SaveButtonVisible = Variable(true);
+
+
+// Center Widgets
+export const TopCenterWindowVisible = Variable(false);
+export const TopCenterWindowKeymode = Variable(NONE);

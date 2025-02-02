@@ -1,7 +1,7 @@
 import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk3"
-import { TopLeftWindowVisible } from "./Variables"
+import { TopLeftWindowVisible } from "../common/Variables"
 import { bind } from "astal/binding"
-import { OnClickCloseButton } from "../TopLeft/BarWidgets";
+import { OnClickCloseButton } from "./BarWidgets";
 
 const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor
 
@@ -17,7 +17,6 @@ const CloseTopLeftWindow = () => {
 
 export default function (gdkmonitor: Gdk.Monitor) {
     
-
     const closeWindowArea = (
         <window
             exclusivity={Astal.Exclusivity.IGNORE}
@@ -26,7 +25,7 @@ export default function (gdkmonitor: Gdk.Monitor) {
             className="CloseWindowArea"
             name={CloseWindowAreaName}
             gdkmonitor={gdkmonitor}
-            visible={bind(TopLeftWindowVisible)}            
+            visible={bind(TopLeftWindowVisible)}
             application={App}
             namespace={CloseWindowAreaName}>
                             

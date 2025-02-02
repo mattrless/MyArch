@@ -90,6 +90,10 @@ export const TopLeftCorner = () => (
     RoundedCorner('topleft', 'Corner')
 );
 
+export const TopRightCorner = () => (
+    RoundedCorner('topright', 'Corner')
+);
+
 export const WindowTopLeftCorner = () => (
     
     RoundedCorner('topleft', 'WindowCorner')

@@ -4,6 +4,7 @@ $theme_bg_color: "@theme_bg_color";
 
 $bg_color: white;
 $widget_bg_color: #CCD0DA;
+$widget_secondary_bg_color: #BCC1CD;
 $accent_color: #4C4F69;
 $hover_bg_color: #E1E6F0;
 
@@ -22,9 +23,9 @@ window.TopLeftWindow {
         margin-left: #{$filler_bars_thickness + 0.05rem};
     }
 
-    .Divisor{
+    .Divisor {
         background-color: $bg_color;
-        min-height: $filler_bars_thickness;    
+        min-height: $filler_bars_thickness;
     }
 
     .TopLeftButtons {
@@ -32,7 +33,7 @@ window.TopLeftWindow {
         min-height: $top_height;
         border-radius: 0 0 #{$bradius + 1.7px} 0;
     }
-    .Button{        
+    .Button {
         background-color: $widget_bg_color;
         color: $accent_color;
         border: 0px;
@@ -44,7 +45,7 @@ window.TopLeftWindow {
             padding: 0 0.6rem 0 0.6rem;            
             border-radius: $bradius;
         }
-        &.AppLauncherButton{            
+        &.AppLauncherButton {
             padding: 0 0.54rem 0 0.54rem;
             border-radius: $circular_button_bradius;
         }
@@ -68,7 +69,7 @@ window.TopLeftWindow {
         background-color: $hover_bg_color;
     }
 
-    .AppLauncher{
+    .AppLauncher {
         background-color: $bg_color;
         min-height: 32.65rem;
         min-width: 29.5rem;
@@ -252,6 +253,101 @@ window.TopLeftWindow {
     }
 }
 
+window.TopCenterWindow {
+
+    .TopCenterSection {
+        margin-top: #{$filler_bars_thickness + 0.05rem};
+    }
+
+    .Container {
+        background-color: $bg_color;
+        min-height: #{$top_height - $filler_bars_thickness};
+        padding: 0 $filler_bars_thickness $filler_bars_thickness $filler_bars_thickness;
+        border-radius: 0 0 $bradius $bradius;
+
+        .Workspaces {
+            background-color: $widget_bg_color;
+            padding: $filler_bars_thickness;
+            border-radius: $widget_bradius;
+
+            button {
+                border: 0;
+                min-width: 0.86rem;
+                min-height: 0.34rem;
+                padding-left: 0rem;
+                padding-right: 0rem;
+                border-radius: $circular_button_bradius;
+
+                transition: min-width 0.3s ease, background-color 0.3s ease-out;
+            }
+    
+            .focused {
+                background-color: $accent_color;
+                min-width: 1.6rem;
+                border-radius: $widget_bradius;
+            }
+    
+            .unfocused {
+                background-color: $hover_bg_color;
+            }
+
+            button:hover {
+                background-color: $widget_secondary_bg_color;
+            }
+
+        }        
+    }
+
+    .ClosePreviewerButton {
+        background-color: $widget_bg_color;
+        color: $accent_color;
+        border: 0px;        
+        transition: background-color 0.2s ease-in-out;
+        min-width: 5.8rem;
+        border-radius: $bradius;
+        margin-top: $filler_bars_thickness;
+    }
+
+    .WorkspacesPreview {
+        background-color: $bg_color;
+        border-radius: 0 0 $bradius $bradius;
+
+        .Previewer {
+            background-color: $bg_color;
+            margin: 0 $filler_bars_thickness $filler_bars_thickness $filler_bars_thickness;
+
+            .focused, .unfocused {                
+                min-width: 150px;
+                min-height: 92px;
+                border-radius: $widget_bradius;
+                padding: 2px;
+            }
+
+            .focused {
+                background-color: $accent_color;
+            }
+
+            .unfocused {
+                background-color: $widget_bg_color;
+            }
+
+            .WorkspaceContent {                
+                background-color: $bg_color;
+                border-radius: $widget_bradius;
+                padding: 4px;
+
+
+                .WindowIcon {
+                    font-size: 2rem;
+                }
+            }
+
+        }
+
+    }
+
+
+}
 
 
 
@@ -276,17 +372,17 @@ window.TopSpacer {
 window.FillerBar {
     background-color: $bg_color;
     
-    .LeftRightBox {        
+    .LeftRightBox {
         min-width: $filler_bars_thickness;
     }
 
-    .TopBottomBox {        
+    .TopBottomBox {
         min-height: $filler_bars_thickness;
     }
 }
 
-.CloseArea {    
-    background-color: transparent;    
+.CloseArea {
+    background-color: transparent;
 }
 
 .Corner {

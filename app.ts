@@ -3,7 +3,9 @@ import style from "./style.scss"
 import TopSpacer from "./widget/common/TopSpacer"
 import { LeftFillerBar, TopFillerBar, RightFillerBar, BottomFillerBar } from "./widget/common/FillerBars"
 import TopLeftWindow from "./widget/TopLeft/TopLeftWindow"
-import CloseWindowArea from "./widget/common/CloseWindowArea"
+import TopCenterWindow from "./widget/TopCenter/TopCenterWindow"
+import CloseTopLeftWindowArea from "./widget/TopLeft/CloseWindowArea"
+import CloseTopCenterWindowArea from "./widget/TopCenter/CloseTopCenterWindowArea"
 import { OnClickAppLauncherButton } from "./widget/TopLeft/BarWidgets"
 
 App.start({
@@ -12,9 +14,11 @@ App.start({
         App.get_monitors().map((gdkmonitor) => {
             
             TopSpacer(gdkmonitor);
-            
-            CloseWindowArea(gdkmonitor);
-            TopLeftWindow(gdkmonitor);            
+            CloseTopLeftWindowArea(gdkmonitor);
+            CloseTopCenterWindowArea(gdkmonitor);
+            TopLeftWindow(gdkmonitor);
+
+            TopCenterWindow(gdkmonitor);
 
             TopFillerBar(gdkmonitor);
             LeftFillerBar(gdkmonitor);
