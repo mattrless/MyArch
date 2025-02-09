@@ -23,11 +23,6 @@ window.TopLeftWindow {
         margin-left: #{$filler_bars_thickness + 0.05rem};
     }
 
-    .Divisor {
-        background-color: $bg_color;
-        min-height: $filler_bars_thickness;
-    }
-
     .TopLeftButtons {
         background-color: $bg_color;
         min-height: $top_height;
@@ -349,7 +344,96 @@ window.TopCenterWindow {
 
 }
 
+window.TopRightWindow {
+    
+    //To put the widget on the right position due to exclusivity equals IGNORE
+    .TopRightSection {        
+        margin-top: #{$filler_bars_thickness + 0.05rem};
+        margin-right: #{$filler_bars_thickness + 0.05rem};        
+    }
 
+    .TopRightButtons {
+        background-color: $bg_color;
+        min-height: $top_height;
+        border-radius: 0 0 0 #{$bradius + 1.7px};
+    }
+
+    .Button {
+        background-color: $widget_bg_color;
+        color: $accent_color;
+        border: 0px;
+        min-height: 1.5rem;
+        margin: 0 0 #{$filler_bars_thickness + 0.08rem} $filler_bars_thickness;
+        transition: background-color 0.2s ease-in-out;
+
+        &.TrayIconsButton {
+            padding: 0 0.7rem 0 0.7rem;
+            border-radius: $widget_bradius;
+
+            .TrayIconsContainer {            
+                padding: 0.2rem;                
+            }
+            .tray-item {
+                background-color: $widget_bg_color;
+                padding: 0 0.54rem 0 0.54rem;
+            }
+        }
+        &.ClipboardButton {
+            padding: 0 0.54rem 0 0.54rem;
+            border-radius: $circular_button_bradius;
+        }
+        &.SettingsButton {
+            padding: 0 0.54rem 0 0.54rem;
+            border-radius: $circular_button_bradius;
+        }
+        &.NotificationCenterButton {
+            padding: 0 0.6rem 0 0.6rem;
+            min-width: 3.2rem;
+            border-radius: $bradius;
+        }
+    }
+
+    .Button > label {
+        font-size: $icons_font_size;
+    }
+
+    .Button:hover {
+        background-color: $hover_bg_color;
+    }
+
+    .Clipboard {
+        background-color: $bg_color;
+        min-width: 24rem;
+        padding: 0 0 $filler_bars_thickness #{$filler_bars_thickness + 0.06rem};
+        border-radius: 0 0 0 $bradius;        
+
+        scrollable {
+            min-height: 30rem;
+        }
+
+        .ClipboardItem {
+            background-color: $widget_bg_color;
+            border-radius: #{$bradius - 8px};            
+            
+            .item {
+                color: $accent_color;
+                padding-right: 0.1rem;
+            }
+        }
+
+        .ClearClipboardButton {
+            margin-top: $filler_bars_thickness;
+            background-color: $widget_bg_color;
+            color: $accent_color;
+            border: 0px;
+            border-radius: $widget_bradius;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .ClearClipboardButton:hover {
+            background-color: $hover_bg_color;
+        }
+    }
+}
 
 
 /*   MISC   */
@@ -379,6 +463,11 @@ window.FillerBar {
     .TopBottomBox {
         min-height: $filler_bars_thickness;
     }
+}
+
+.Divisor {
+    background-color: $bg_color;
+    min-height: $filler_bars_thickness;
 }
 
 .CloseArea {

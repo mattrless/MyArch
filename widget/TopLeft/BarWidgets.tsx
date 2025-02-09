@@ -137,7 +137,7 @@ const StyleButton = () => {
         }}/>
 }
 
-export const TopLeftButtons  = () => {
+export const TopLeftButtons = () => {
     return <box vexpand={true} vertical={true} homogeneous={false}>
         <box>
             <box vertical={true}>
@@ -151,7 +151,7 @@ export const TopLeftButtons  = () => {
             </box>
             <TopLeftCorner />
         </box>
-        <WindowTopLeftCorner />        
+        <WindowTopLeftCorner />
     </box>
 }
 

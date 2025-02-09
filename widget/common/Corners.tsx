@@ -153,28 +153,8 @@ const TopRight = () => (
     </window>
 );
 
-const BottomLeft = () => (
-    <window
-        name="cornerbl"
-        layer={Astal.Layer.OVERLAY}
-        exclusivity={Astal.Exclusivity.IGNORE}
-        anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT}
-        clickThrough={true}
-    >
-        {RoundedCorner('bottomleft')}
-    </window>
-);
 
-const BottomRight = () => (
-    <window
-        name="cornerbr"
-        layer={Astal.Layer.OVERLAY}
-        exclusivity={Astal.Exclusivity.IGNORE}
-        anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.RIGHT}
-        clickThrough={true}
-    >
-        {RoundedCorner('bottomright')}
-    </window>
-);
+
+
 
 */

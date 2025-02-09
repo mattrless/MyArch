@@ -1,11 +1,9 @@
 import { Astal } from "astal/gtk3"
-import { Variable } from "astal";
+import { Variable, GLib } from "astal";
 import Apps from "gi://AstalApps";
-import { subprocess, exec, execAsync } from "astal/process";
+import { execAsync } from "astal/process";
 import GTop from "gi://GTop";
 
-const { EXCLUSIVE, NORMAL } = Astal.Exclusivity
-const { TOP, BOTTOM } = Astal.Layer
 const {ON_DEMAND, NONE} = Astal.Keymode
 
 export const TopLeftWindowVisible = Variable(false);
@@ -159,3 +157,24 @@ export const SaveButtonVisible = Variable(true);
 // Center Widgets
 export const TopCenterWindowVisible = Variable(false);
 export const TopCenterWindowKeymode = Variable(NONE);
+
+
+// Top Right Widgets
+
+export const TopRightWindowVisible = Variable(false);
+export const TopRightWindowKeymode = Variable(NONE);
+export const ClipboardVisible = Variable(false);
+export const NotificationCenterVisible = Variable(false);
+export const SettingsVisible = Variable(false);
+export const TopRightCurrentWindow = Variable("Default");
+export const TrayIconsVisible = Variable(false);
+export const TrayIconButtonLabel = Variable("");
+
+export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
+
+export const Clipboard = Variable("").poll(1000,
+    "cliphist list",
+    (out) => {        
+        return out;
+    }
+);

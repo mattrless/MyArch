@@ -2,11 +2,14 @@ import { App } from "astal/gtk3"
 import style from "./style.scss"
 import TopSpacer from "./widget/common/TopSpacer"
 import { LeftFillerBar, TopFillerBar, RightFillerBar, BottomFillerBar } from "./widget/common/FillerBars"
+import TopRightWindow from "./widget/TopRight/TopRightWindow"
 import TopLeftWindow from "./widget/TopLeft/TopLeftWindow"
 import TopCenterWindow from "./widget/TopCenter/TopCenterWindow"
 import CloseTopLeftWindowArea from "./widget/TopLeft/CloseWindowArea"
 import CloseTopCenterWindowArea from "./widget/TopCenter/CloseTopCenterWindowArea"
-import { OnClickAppLauncherButton } from "./widget/TopLeft/BarWidgets"
+import { OnClickAppLauncherButton, OnClickCloseButton } from "./widget/TopLeft/BarWidgets"
+import { OnClickClipboardButton, OnClickCloseTRButton } from "./widget/TopRight/BarButtons"
+import { AppLauncherVisible, ClipboardVisible } from "./widget/common/Variables"
 
 App.start({
     css: style,
@@ -20,6 +23,9 @@ App.start({
 
             TopCenterWindow(gdkmonitor);
 
+            TopRightWindow(gdkmonitor);
+            
+            // BottomCorners(gdkmonitor);
             TopFillerBar(gdkmonitor);
             LeftFillerBar(gdkmonitor);
             RightFillerBar(gdkmonitor);
@@ -31,9 +37,14 @@ App.start({
     //To toggle my no window widgets
     requestHandler(request: string, res: (response: any) => void) {
         if (request == "OpenAppLauncher") {
-            OnClickAppLauncherButton();
+            AppLauncherVisible.get() == true ? OnClickCloseButton() : OnClickAppLauncherButton();            
             return res("done")
         }
+        if (request == "OpenClipboard") {
+            ClipboardVisible.get() == true ? OnClickCloseTRButton() : OnClickClipboardButton();            
+            return res("done")
+        }
+
         res("unknown command")
     },
 })
