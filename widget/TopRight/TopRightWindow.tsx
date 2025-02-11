@@ -2,7 +2,7 @@ import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk3"
 import { TopRightButtons } from "./BarButtons"
 import { TopRightWindowVisible, TopRightCurrentWindow, TopRightWindowKeymode } from "../common/Variables"
 import Clipboard from "./Clipboard"
-//import Dashboard from "./Dashboard"
+import NotificationCenter from "./NotificationCenter"
 import { bind } from "astal/binding"
 import { OnClickCloseTRButton } from "./BarButtons"
 
@@ -43,7 +43,7 @@ export default function (gdkmonitor: Gdk.Monitor) {
                                 <Clipboard />
                             </box>
                             <box name="NotificationCenter">
-                                {/* <Dashboard /> */}
+                                <NotificationCenter />
                             </box>
                             <box name="Settings">
                                 {/* <Dashboard /> */}

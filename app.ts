@@ -10,6 +10,7 @@ import CloseTopCenterWindowArea from "./widget/TopCenter/CloseTopCenterWindowAre
 import { OnClickAppLauncherButton, OnClickCloseButton } from "./widget/TopLeft/BarWidgets"
 import { OnClickClipboardButton, OnClickCloseTRButton } from "./widget/TopRight/BarButtons"
 import { AppLauncherVisible, ClipboardVisible } from "./widget/common/Variables"
+import NotificationPopups from "./widget/notifications/NotificationPopups"
 
 App.start({
     css: style,
@@ -31,6 +32,7 @@ App.start({
             RightFillerBar(gdkmonitor);
             BottomFillerBar(gdkmonitor);
             
+            NotificationPopups(gdkmonitor);
         });
         
     },

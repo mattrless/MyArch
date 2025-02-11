@@ -3,14 +3,14 @@ import { Variable, GLib } from "astal";
 import { TopRightCorner, WindowTopRightCorner } from "../common/Corners";
 import { bind, Binding } from "astal/binding";
 import {    ClipboardVisible,
+            NotificationCenterVisible,
             SettingsVisible,
             TopRightWindowVisible,
             TopRightCurrentWindow,
             TopRightWindowKeymode,
             time,
             TrayIconButtonLabel,
-            TrayIconsVisible,
-            HomePath
+            TrayIconsVisible            
         } from "../common/Variables";
 import Wp from "gi://AstalWp";
 import Tray from "gi://AstalTray"
@@ -41,6 +41,25 @@ export const OnClickClipboardButton = () => {
     }
 }
 
+export const OnClickNotificationCenterButton = () => {
+    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() === "Settings") {
+        OnClickCloseTRButton();
+        setTimeout(() => {
+            TopRightWindowKeymode.set(Astal.Keymode.ON_DEMAND);
+            
+            NotificationCenterVisible.set(true);
+            TopRightWindowVisible.set(true);
+            TopRightCurrentWindow.set("NotificationCenter");
+        }, SLIDE_TIMEOUT);
+    } else if (!TopRightWindowVisible.get()) {
+        TopRightWindowKeymode.set(Astal.Keymode.ON_DEMAND);
+
+        TopRightWindowVisible.set(true);
+        NotificationCenterVisible.set(true);
+        TopRightCurrentWindow.set("NotificationCenter");
+    }
+}
+
 function OnClickSettingsButton() {
     if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() === "Clipboard") {
         OnClickCloseTRButton();
@@ -64,6 +83,7 @@ function OnClickSettingsButton() {
 export const OnClickCloseTRButton= () => {
     
     ClipboardVisible.set(false);
+    NotificationCenterVisible.set(false);
     SettingsVisible.set(false);
     TopRightWindowVisible.set(false);
     TopRightWindowKeymode.set(Astal.Keymode.NONE);
@@ -175,6 +195,17 @@ const ClipboardButton = () => {
     />
 }
 
+const NotificationCenterButton = () => {
+    
+    return <AnimatedButton
+        visibleVariable={NotificationCenterVisible}
+        openWindowLabel={bind(time)}
+        closeWindowLabel="󰅙"
+        onClick={OnClickNotificationCenterButton}
+        btnClassName="NotificationCenterButton"
+    />
+}
+
 const SettingsButton = () => {
     
     return <AnimatedButton
@@ -183,17 +214,6 @@ const SettingsButton = () => {
         closeWindowLabel="󰅙"
         onClick={OnClickSettingsButton}
         btnClassName="SettingsButton"
-    />
-}
-
-const NotificationCenterButton = () => {
-    
-    return <AnimatedButton
-        visibleVariable={SettingsVisible}
-        openWindowLabel={bind(time)}
-        closeWindowLabel="󰅙"
-        onClick={OnClickSettingsButton}
-        btnClassName="NotificationCenterButton"
     />
 }
 
@@ -260,5 +280,3 @@ const AnimatedButton = ({
         </box>
     );
 };
-
-

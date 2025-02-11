@@ -170,7 +170,8 @@ export const TopRightCurrentWindow = Variable("Default");
 export const TrayIconsVisible = Variable(false);
 export const TrayIconButtonLabel = Variable("");
 
-export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
+//export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
+export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%I:%M %p")!)
 
 export const Clipboard = Variable("").poll(1000,
     "cliphist list",
@@ -178,3 +179,15 @@ export const Clipboard = Variable("").poll(1000,
         return out;
     }
 );
+
+// Notifcation Center
+export const DayOfWeek = Variable<string>("").poll(3000, () => 
+    GLib.DateTime.new_now_local().format("%A")!
+);
+
+export const FullDate = Variable<string>("").poll(3000, () => 
+    GLib.DateTime.new_now_local().format("%B %d %Y")!
+);
+
+export const SilenceNotificationsLabel = Variable("");
+export const DoNotDisturb = Variable(false);
