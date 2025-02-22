@@ -19,18 +19,31 @@ export class PersistentNotificationMap implements Subscribable {
     constructor() {
         const notifd = Notifd.get_default();
 
-        // Escuchar cuando se agrega una nueva notificación
         notifd.connect("notified", (_, id) => {
+            const dismiss = () => this.delete(id)
+
             this.set(id, Notification({
                 notification: notifd.get_notification(id)!,
+
+                // once hovering over the notification is done
+                // destroy the widget without calling notification.dismiss()
+                // so that it acts as a "popup" and we can still display it
+                // in a notification center like widget
+                // but clicking on the close button will close it
                 onHoverLost: () => {
-                    // No hacer nada al perder el hover
+                    //this.delete(id)
                 },
+
+                // notifd by default does not close notifications
+                // until user input or the timeout specified by sender
+                // which we set to ignore above
                 setup: () => {
-                    // No establecer un timeout para eliminar la notificación
-                }
-            }));
-        });
+
+                },
+                //onClose: () => this.hide(id)
+                onDismiss: dismiss // Pasar el callback
+            }))
+        })
 
         // Escuchar cuando se resuelve una notificación (por ejemplo, cuando el usuario la cierra)
         notifd.connect("resolved", (_, id) => {

@@ -6,7 +6,7 @@ import { Variable, bind, timeout } from "astal"
 import { DoNotDisturb } from "../common/Variables"
 
 // see comment below in constructor
-const TIMEOUT_DELAY = 6000
+const TIMEOUT_DELAY = 5000
 
 // The purpose if this class is to replace Variable<Array<Widget>>
 // with a Map<number, Widget> type in order to track notification widgets
@@ -23,7 +23,7 @@ export class NotificationMap implements Subscribable {
     private notifiy() {
         this.var.set([...this.map.values()].reverse())
     }
-
+    private callbacks: Map<number, () => void> = new Map() // Almacenar callbacks
     constructor() {
         const notifd = Notifd.get_default()
 
@@ -36,6 +36,8 @@ export class NotificationMap implements Subscribable {
         // notifd.ignoreTimeout = true
 
         notifd.connect("notified", (_, id) => {
+            const dismiss = () => this.delete(id)
+
             this.set(id, Notification({
                 notification: notifd.get_notification(id)!,
 
@@ -51,13 +53,17 @@ export class NotificationMap implements Subscribable {
                 // notifd by default does not close notifications
                 // until user input or the timeout specified by sender
                 // which we set to ignore above
-                setup: () => timeout(TIMEOUT_DELAY, () => {
-                    /**
-                     * uncomment this if you want to "hide" the notifications
-                     * after TIMEOUT_DELAY
-                     */
+                setup: (self) => timeout(TIMEOUT_DELAY, () => {
+
                     this.hide(id)
-                })
+
+                    // const widget = this.map.get(id)
+                    // if (widget) widget.visible = false
+
+                    //this.callbacks.get(id)?.()
+                }),
+                //onClose: () => this.hide(id)
+                onDismiss: dismiss // Pasar el callback
             }))
         })
 
@@ -76,6 +82,7 @@ export class NotificationMap implements Subscribable {
     }
 
     private delete(key: number) {
+        this.callbacks.delete(key)
         this.map.get(key)?.destroy()
         this.map.delete(key)
         this.notifiy()
@@ -86,6 +93,17 @@ export class NotificationMap implements Subscribable {
         this.map.delete(key)
         this.notifiy()
     }
+
+    // private hide(key: number) {
+    //     const widget = this.map.get(key);
+    //     if (widget instanceof Notification) {
+    //         (widget.constructor as any).dismissWithAnimation();
+    //     }
+    //     this.map.delete(key);
+    //     this.notifiy();
+    // }
+    
+    
 
     // needed by the Subscribable interface
     get() {
@@ -105,11 +123,14 @@ export default function NotificationPopups(gdkmonitor: Gdk.Monitor) {
     return <window
         visible={bind(DoNotDisturb().as((v: boolean) => !v))}
         className="NotificationPopups"
+        namespace={"NotificationPopups"}
         gdkmonitor={gdkmonitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | RIGHT}>
+
         <box vertical noImplicitDestroy>
             {bind(notifs)}
         </box>
+        
     </window>
 }

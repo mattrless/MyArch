@@ -12,8 +12,6 @@ import {    AppLauncherVisible,
             StyleLabel,
             WindowCornerStyle
         } from "../common/Variables";
-//󰣇
-//󰅙
 
 const SLIDE_TIMEOUT = 200;
 const FADE_DURATION = 1000;
@@ -85,7 +83,7 @@ const AppLauncherButton = () => {
     
     return <AnimatedButton
         visibleVariable={AppLauncherVisible}
-        openWindowLabel=""
+        openWindowLabel=""
         closeWindowLabel="󰅙"
         onClick={OnClickAppLauncherButton}
         btnClassName="AppLauncherButton"
@@ -128,11 +126,11 @@ const StyleButton = () => {
             if (TopBarStyle.get() === "TransparentSpacer") {
                 TopBarStyle.set("ColoredSpacer");
                 WindowCornerStyle.set("ColoredSpacerCorner");
-                StyleLabel.set("");
+                //StyleLabel.set("");
             } else {
                 TopBarStyle.set("TransparentSpacer");
                 WindowCornerStyle.set("TransparentSpacerCorner");
-                StyleLabel.set("󰖯");
+                //StyleLabel.set("");
             }
         }}/>
 }

@@ -3,6 +3,7 @@ import { TopRightButtons } from "./BarButtons"
 import { TopRightWindowVisible, TopRightCurrentWindow, TopRightWindowKeymode } from "../common/Variables"
 import Clipboard from "./Clipboard"
 import NotificationCenter from "./NotificationCenter"
+import Settings from "./Settings"
 import { bind } from "astal/binding"
 import { OnClickCloseTRButton } from "./BarButtons"
 
@@ -11,7 +12,7 @@ const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor
 const { START, CENTER, END } = Gtk.Align
 
 export const TopRightWindowName = "TopRightWindow"
-    
+
 export default function (gdkmonitor: Gdk.Monitor) {
     const topRightWindow = (
         <window
@@ -27,7 +28,6 @@ export default function (gdkmonitor: Gdk.Monitor) {
             onKeyPressEvent={function (self, event: Gdk.Event) {
                 if (event.get_keyval()[1] === Gdk.KEY_Escape)
                     OnClickCloseTRButton();
-                    
             }}
             
             >
@@ -46,7 +46,7 @@ export default function (gdkmonitor: Gdk.Monitor) {
                                 <NotificationCenter />
                             </box>
                             <box name="Settings">
-                                {/* <Dashboard /> */}
+                                <Settings />
                             </box>
                             <box name="Default" />
                         </stack>

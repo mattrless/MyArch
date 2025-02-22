@@ -1,12 +1,11 @@
 import { App, Gtk, Astal, Gdk } from 'astal/gtk3';
 import Cairo from 'cairo';
 
-const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
+const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor
 
 export const RoundedCorner = (
     place: string = 'top left',
     cornerClassName: string
-    //css: string = 'background-color: red;', //se puede hacer que al generar cada esquina se aplique el css
 ) => (
     <box
         halign={place.includes('left') ? Gtk.Align.START : Gtk.Align.END}
@@ -19,15 +18,6 @@ export const RoundedCorner = (
                 ${place.includes('left') ? '-1px' : '0'};
         `}>
         <drawingarea
-            /* 
-
-            css={`
-                border-radius: 8px;
-                border-width: 0.068rem;
-                ${css}
-            `}
-
-            */
             
             className={cornerClassName}
             setup={(widget) => {
@@ -118,43 +108,34 @@ export const WindowBottomRightCorner = () => (
     
 );
 
-/*
-export const WindowTopLeftCornerTest = (gdkmonitor: Gdk.Monitor) => (
-    //className needed so we separate the style of window from the drawingArea (that draws the corner)
+export const ScreenBottomLeftCorner = (gdkmonitor: Gdk.Monitor) => (
+    
     <window        
         gdkmonitor={gdkmonitor}
-        name="cornertl"
+        name="bcorners"
         className="aux"
         layer={Astal.Layer.TOP}
         exclusivity={Astal.Exclusivity.NORMAL}
-        //exclusivity={bind(ExclusiveNormal)}
-        anchor={ TOP | LEFT }
+        anchor={ BOTTOM | LEFT }
         clickThrough={true}
         >
-        {RoundedCorner('topleft', 'WindowCorner')}
+        <WindowBottomLeftCorner />
     </window>
+    
 );
-*/
 
-
-
-
-
-/*
-const TopRight = () => (
-    <window
-        name="cornertr"
-        layer={Astal.Layer.OVERLAY}
-        exclusivity={Astal.Exclusivity.IGNORE}
-        anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
+export const ScreenBottomRightCorner = (gdkmonitor: Gdk.Monitor) => (
+    
+    <window        
+        gdkmonitor={gdkmonitor}
+        name="bcorners"
+        className="aux"
+        layer={Astal.Layer.TOP}
+        exclusivity={Astal.Exclusivity.NORMAL}
+        anchor={ BOTTOM | RIGHT }
         clickThrough={true}
-    >
-        {RoundedCorner('topright')}
+        >
+        <WindowBottomRightCorner />
     </window>
+    
 );
-
-
-
-
-
-*/

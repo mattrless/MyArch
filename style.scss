@@ -1,13 +1,5 @@
+@use "./colors.scss";
 @use "sass:string";
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-// $theme_fg_color: "@theme_fg_color";
-// $theme_bg_color: "@theme_bg_color";
-
-$bg_color: white;
-$widget_bg_color: #CCD0DA;
-$widget_secondary_bg_color: #BCC1CD;
-$accent_color: #4C4F69;
-$hover_bg_color: #E1E6F0;
 
 $top_height: 2.7rem;
 $bradius: 25px;
@@ -25,13 +17,13 @@ window.TopLeftWindow {
     }
 
     .TopLeftButtons {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-height: $top_height;
         border-radius: 0 0 #{$bradius + 1.7px} 0;
     }
     .Button {
-        background-color: $widget_bg_color;
-        color: $accent_color;
+        background-color: colors.$widget_bg_color;
+        color: colors.$accent_color;
         border: 0px;
         min-height: 1.5rem;
         margin: 0 $filler_bars_thickness #{$filler_bars_thickness + 0.08rem} 0;
@@ -62,11 +54,16 @@ window.TopLeftWindow {
     }
 
     .Button:hover {
-        background-color: $hover_bg_color;
+        background-color: colors.$hover_bg_color;
+    }
+
+    .Button:focus {
+        background-color: colors.$hover_bg_color;
+        outline: 0;
     }
 
     .AppLauncher {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-height: 32.65rem;
         min-width: 29.5rem;
         padding: 0 $filler_bars_thickness $filler_bars_thickness 0;
@@ -74,7 +71,7 @@ window.TopLeftWindow {
 
 
         .AppButton {
-            background-color: $widget_bg_color;
+            background-color: colors.$widget_bg_color;
             border-radius: #{$bradius - 8px};
 
             icon {
@@ -85,19 +82,23 @@ window.TopLeftWindow {
             label.name {
                 font-weight: bold;
                 font-size: 1.1rem;
-                color: $accent_color;
+                color: colors.$accent_color;
             }
 
             label.description {
                 font-weight: lighter;
-                color: $accent_color;
+                color: colors.$accent_color;
             }
+        }
+        .AppButton:focus {
+            background-color: colors.$hover_bg_color;
+            outline: 0;
         }
     }
     
     //vexpand
     .Dashboard {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-width: 28rem;
         padding: 0 #{$filler_bars_thickness + 0.06rem} $filler_bars_thickness 0;
         border-radius: 0 0 $bradius 0;
@@ -118,7 +119,7 @@ window.TopLeftWindow {
 
             .Divider {
                 min-width: 0.25rem;
-                background-color: $widget_bg_color;
+                background-color: colors.$widget_bg_color;
                 border-radius: 50px;
                 margin: 0.5rem $filler_bars_thickness 0.5rem #{$filler_bars_thickness * 1.5};
             }
@@ -129,14 +130,14 @@ window.TopLeftWindow {
     
                 label {
                     font-size: 18px;
-                    color: $accent_color;
+                    color: colors.$accent_color;
                 }
             }
         }
 
         .NetInfoButton {
             margin-top: $filler_bars_thickness;
-            background-color: $widget_bg_color;
+            background-color: colors.$widget_bg_color;
             border-radius: $widget_bradius;
             
             .IpSpeed {
@@ -144,17 +145,17 @@ window.TopLeftWindow {
             }
             .Ip {
                 margin-top: $filler_bars_thickness;
-                color: $accent_color;
+                color: colors.$accent_color;
                 font-size: 20px;
             }
             .NetSpeed {
-                color: $accent_color;
+                color: colors.$accent_color;
                 font-size: 16px;
             }
 
             .NetInfoDivider {
                 min-width: 0.25rem;
-                background-color: $bg_color;
+                background-color: colors.$bg_color;
                 border-radius: 50px;
                 margin: 0.5rem $filler_bars_thickness 0.5rem #{$filler_bars_thickness * 1.5};
             }
@@ -164,24 +165,104 @@ window.TopLeftWindow {
                 
             } 
             .NetTypeIcon > label {
-                color: $accent_color;
+                color: colors.$accent_color;
                 font-size: 50px;
             }            
             
         }
 
         .NetInfoButton:hover {
-            background-color: $hover_bg_color;
+            background-color: colors.$hover_bg_color;
+        }
+
+        .AudioPlayerContainer {
+            padding: 2px;
+            background-color: colors.$widget_bg_color;
+            border-radius: $widget_bradius;
+
+            box.MediaPlayer {
+                padding: $filler_bars_thickness;
+                background-color: colors.$bg_color;
+                border-radius: $widget_bradius;
+            
+                box.cover-art {
+                    min-width: 80px;
+                    min-height: 80px;
+                    border-radius: $bradius;
+                    margin-right: $filler_bars_thickness;
+                    background-size: contain;
+                    background-position: center;
+                    border-radius: $widget_bradius;
+                }
+            
+                box.title {
+                    color: colors.$accent_color;
+                    label {
+                        font-weight: bold;
+                        font-size: 1.1em;
+                        
+                    }
+                }
+
+                label.artist {
+                    color: colors.$widget_secondary_bg_color;
+                }
+            
+                scale {
+                    padding: 0;
+                    margin: .4rem 0;
+            
+                    trough {
+                        min-height: 8px;
+                        background-color: colors.$widget_bg_color;
+                        border-radius: $widget_bradius;
+                    }
+            
+                    highlight {
+                        background-color: colors.$accent_color;
+                    }
+            
+                    slider {
+                        all: unset;
+                        color: colors.$accent_color;
+                    }
+                }
+            
+                centerbox.actions {
+                    min-width: 220px;
+                    color: colors.$accent_color;
+
+                    button {
+                        min-width: 0;
+                        min-height: 0;
+                        padding: .4rem;
+                        margin: 0 .2rem;
+                        background-color: colors.$widget_bg_color;
+                        color: colors.$accent_color;
+                        border-radius: $circular_button_bradius;
+                    }
+
+                    button:hover {
+                        background-color: colors.$hover_bg_color;
+                    }
+
+                    button:focus {
+                        background-color: colors.$hover_bg_color;
+                        outline: 0;
+                    }
+            
+                }
+            }
         }
         
         .SysUsage {
             margin-top: $filler_bars_thickness;
-            background-color: $bg_color;
+            background-color: colors.$bg_color;
             border-radius: $widget_bradius;
 
             circularprogress {
-                color: $accent_color;
-                background-color: $widget_bg_color;
+                color: colors.$accent_color;
+                background-color: colors.$widget_bg_color;
                 min-width: 80px;
                 min-height: 80px;
             }
@@ -189,7 +270,7 @@ window.TopLeftWindow {
             .RamUsage, .CpuUsage, .DiskUsage {
                 margin: $filler_bars_thickness;
                 label {
-                    color: $accent_color;
+                    color: colors.$accent_color;
                     font-size: 40px;
                 }
             }
@@ -205,7 +286,7 @@ window.TopLeftWindow {
         
         .QuickNote {
             margin-top: $filler_bars_thickness;
-            background-color: $widget_bg_color;
+            background-color: colors.$widget_bg_color;
             border-radius: $widget_bradius;
 
             .Title {
@@ -213,14 +294,14 @@ window.TopLeftWindow {
                 margin-left: $filler_bars_thickness;
                 margin-right: $filler_bars_thickness;
                 .QNLabel {
-                    color: $accent_color;
+                    color: colors.$accent_color;
                     padding: 0 0.6rem 0 0.6rem;
                     font-size: $icons_font_size;                    
                 }
 
                 .ClearSave {
                     background-color: transparent;
-                    color: $accent_color;
+                    color: colors.$accent_color;
                     border: 0px;
                     padding: 0;
                     transition: color 0.3s ease-in-out;
@@ -230,7 +311,7 @@ window.TopLeftWindow {
                 }
 
                 .ClearSave:hover {
-                    color: $bg_color;
+                    color: colors.$bg_color;
                 }
             }
 
@@ -238,11 +319,18 @@ window.TopLeftWindow {
                 padding: 4px;
                 margin: 2px;
                 min-height: 14rem;
-                background-color: $bg_color;
+                background-color: colors.$bg_color;
                 border-radius: 0 0 $widget_bradius $widget_bradius;
 
                 scrollable{
+                    all: unset;
+                    border: 0;
                     min-height: 14rem;
+
+                    * { 
+                        background-color: colors.$bg_color;
+                        color: colors.$accent_color;
+                    }
                 }
             }
         }
@@ -256,13 +344,13 @@ window.TopCenterWindow {
     }
 
     .Container {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-height: #{$top_height - $filler_bars_thickness};
         padding: 0 $filler_bars_thickness $filler_bars_thickness $filler_bars_thickness;
         border-radius: 0 0 $bradius $bradius;
 
         .Workspaces {
-            background-color: $widget_bg_color;
+            background-color: colors.$widget_bg_color;
             padding: $filler_bars_thickness;
             border-radius: $widget_bradius;
 
@@ -278,38 +366,50 @@ window.TopCenterWindow {
             }
     
             .focused {
-                background-color: $accent_color;
+                background-color: colors.$accent_color;
                 min-width: 1.6rem;
                 border-radius: $widget_bradius;
             }
     
             .unfocused {
-                background-color: $hover_bg_color;
+                background-color: colors.$hover_bg_color;
             }
 
             button:hover {
-                background-color: $widget_secondary_bg_color;
+                background-color: colors.$widget_secondary_bg_color;
+            }
+
+            button:focus {
+                background-color: colors.$hover_bg_color;
+                outline: 0;
             }
 
         }        
     }
 
     .ClosePreviewerButton {
-        background-color: $widget_bg_color;
-        color: $accent_color;
+        background-color: colors.$widget_bg_color;
+        color: colors.$accent_color;
         border: 0px;        
         transition: background-color 0.2s ease-in-out;
-        min-width: 5.8rem;
+        min-width: 3.6rem;
         border-radius: $bradius;
         margin-top: $filler_bars_thickness;
     }
+    .ClosePreviewerButton:hover {
+        background-color: colors.$hover_bg_color;
+    }
+    .ClosePreviewerButton:focus {
+        background-color: colors.$hover_bg_color;
+        outline: 0;
+    }
 
     .WorkspacesPreview {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         border-radius: 0 0 $bradius $bradius;
 
         .Previewer {
-            background-color: $bg_color;
+            background-color: colors.$bg_color;
             margin: 0 $filler_bars_thickness $filler_bars_thickness $filler_bars_thickness;
 
             .focused, .unfocused {                
@@ -320,15 +420,15 @@ window.TopCenterWindow {
             }
 
             .focused {
-                background-color: $accent_color;
+                background-color: colors.$accent_color;
             }
 
             .unfocused {
-                background-color: $widget_bg_color;
+                background-color: colors.$widget_bg_color;
             }
 
             .WorkspaceContent {                
-                background-color: $bg_color;
+                background-color: colors.$bg_color;
                 border-radius: $widget_bradius;
                 padding: 4px;
 
@@ -354,14 +454,14 @@ window.TopRightWindow {
     }
 
     .TopRightButtons {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-height: $top_height;
         border-radius: 0 0 0 #{$bradius + 1.7px};
     }
 
     .Button {
-        background-color: $widget_bg_color;
-        color: $accent_color;
+        background-color: colors.$widget_bg_color;
+        color: colors.$accent_color;
         border: 0px;
         min-height: 1.5rem;
         margin: 0 0 #{$filler_bars_thickness + 0.08rem} $filler_bars_thickness;
@@ -375,7 +475,7 @@ window.TopRightWindow {
                 padding: 0.2rem;                
             }
             .tray-item {
-                background-color: $widget_bg_color;
+                background-color: colors.$widget_bg_color;
                 padding: 0 0.54rem 0 0.54rem;
             }
         }
@@ -389,7 +489,7 @@ window.TopRightWindow {
         }
         &.NotificationCenterButton {
             padding: 0 0.6rem 0 0.6rem;
-            min-width: 3.2rem;
+            min-width: 4rem;
             border-radius: $bradius;
             //font-weight: normal;
         }
@@ -400,11 +500,15 @@ window.TopRightWindow {
     }
 
     .Button:hover {
-        background-color: $hover_bg_color;
+        background-color: colors.$hover_bg_color;
+    }
+    .Button:focus {
+        background-color: colors.$hover_bg_color;
+        outline: 0;
     }
 
     .Clipboard {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-width: 24rem;
         padding: 0 0 $filler_bars_thickness #{$filler_bars_thickness + 0.06rem};
         border-radius: 0 0 0 $bradius;        
@@ -414,36 +518,47 @@ window.TopRightWindow {
         }
 
         .ClipboardItem {
-            background-color: $widget_bg_color;
+            background-color: colors.$widget_bg_color;
             border-radius: #{$bradius - 8px};            
             
             .item {
-                color: $accent_color;
+                color: colors.$accent_color;
                 padding-right: 0.1rem;
             }
+        }
+        .ClipboardItem:hover {
+            background-color: colors.$hover_bg_color;
+        }
+        .ClipboardItem:focus {
+            background-color: colors.$hover_bg_color;
+            outline: 0;
         }
 
         .ClearClipboardButton {
             margin-top: $filler_bars_thickness;
-            background-color: $widget_bg_color;
-            color: $accent_color;
+            background-color: colors.$widget_bg_color;
+            color: colors.$accent_color;
             border: 0px;
             border-radius: $widget_bradius;
             transition: background-color 0.3s ease-in-out;
         }
         .ClearClipboardButton:hover {
-            background-color: $hover_bg_color;
+            background-color: colors.$hover_bg_color;
+        }
+        .ClearClipboardButton:focus {
+            background-color: colors.$hover_bg_color;
+            outline: 0;
         }
     }
 
     .NotificationCenter {
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         padding: 0 0 $filler_bars_thickness #{$filler_bars_thickness + 0.06rem};
         border-radius: 0 0 0 $bradius;
 
         .Date {
             margin: $filler_bars_thickness;
-            color: $accent_color;
+            color: colors.$accent_color;
 
             .DayOfWeek {
                 font-size: 22px;
@@ -457,7 +572,7 @@ window.TopRightWindow {
 
         .CalendarContainer {
             min-width: 24rem;
-            background-color:$widget_bg_color;
+            background-color:colors.$widget_bg_color;
             border-radius: $widget_bradius;
 
             .Border {
@@ -467,30 +582,30 @@ window.TopRightWindow {
                     //padding-bottom: 4px;
                     padding: 6px;
                     border-radius: $widget_bradius;
-                    background-color: $bg_color;
-                    color: $accent_color;
+                    background-color: colors.$bg_color;
+                    color: colors.$accent_color;
                     border: 0;
     
                     .button {                        
-                        background-color: $widget_bg_color;
+                        background-color: colors.$widget_bg_color;
                     }
     
                     .header {
                         border: 0;
                         //border-radius: 10px 10px 0 0;
-                        background-color: $widget_bg_color;
+                        background-color: colors.$widget_bg_color;
                     }
 
                 }
 
                 calendar:selected {
-                    background-color: $widget_bg_color;
+                    background-color: colors.$widget_bg_color;
                 }
                 calendar:hover {
-                    color: $hover_bg_color;
+                    color: colors.$hover_bg_color;
                 }
                 calendar:indeterminate {
-                    color: $widget_secondary_bg_color;
+                    color: colors.$widget_secondary_bg_color;
                 }
             }
             
@@ -498,7 +613,7 @@ window.TopRightWindow {
         
         .NotificationsContainer {
             margin-top: $filler_bars_thickness;
-            background-color: $widget_bg_color;
+            background-color: colors.$widget_bg_color;
             border-radius: $widget_bradius;
 
             .Title {
@@ -507,14 +622,14 @@ window.TopRightWindow {
                 margin-right: $filler_bars_thickness;
 
                 .NCLabel {
-                    color: $accent_color;
+                    color: colors.$accent_color;
                     padding: 0 0.6rem 0 0.6rem;
                     font-size: $icons_font_size;
                 }
 
                 .NotDisturbClear {
                     background-color: transparent;
-                    color: $accent_color;
+                    color: colors.$accent_color;
                     border: 0px;
                     padding: 0;
                     transition: color 0.3s ease-in-out;
@@ -524,7 +639,7 @@ window.TopRightWindow {
                 }
 
                 .NotDisturbClear:hover {
-                    color: $bg_color;
+                    color: colors.$bg_color;
                 }
             }
 
@@ -532,11 +647,256 @@ window.TopRightWindow {
                 padding: 4px;
                 margin: 2px;
                 min-height: 14rem;
-                background-color: $bg_color;
+                background-color: colors.$bg_color;
                 border-radius: 0 0 $widget_bradius $widget_bradius;
 
-                scrollable{
+                scrollable{                    
                     min-height: 18rem;
+                }
+            }
+            
+        }
+    }
+
+    .Settings {
+        background-color:colors.$bg_color;
+        padding: 0 0 $filler_bars_thickness #{$filler_bars_thickness + 0.06rem};
+        border-radius: 0 0 0 $bradius;
+
+        .AudioSettings {
+            background-color: colors.$bg_color;
+            margin-top: 0.4rem;
+
+            .AudioSlider {
+                min-width: 16rem;
+
+                * {
+                    all: unset;
+                }
+        
+                icon {
+                    color: colors.$accent_color;
+                    margin-right: .6em;
+                    font-size: $icons_font_size;
+                }
+        
+                & {
+                    margin: 0 1em;
+                }
+        
+                trough {
+                    background-color: colors.$widget_bg_color;
+                    border-radius: $widget_bradius;
+                }
+        
+                highlight {
+                    background-color: colors.$accent_color;
+                    min-height: .8em;
+                    border-radius: $widget_bradius;
+                }
+        
+                // slider {
+                //     background-color: colors.$hover_bg_color;
+                //     border-radius: $widget_bradius;
+                //     min-height: 1em;
+                //     min-width: 1em;
+                //     margin: -.2em;
+                // }
+            }
+
+            .DevicesButton {
+                background-color: colors.$widget_bg_color;
+                color: colors.$accent_color;
+                border: 0px;
+                padding: 0 0.46rem 0 0.46rem;
+                border-radius: $circular_button_bradius;
+            }
+            .DevicesButton > label {
+                font-size: $icons_font_size;
+            }
+            .DevicesButton:hover {
+                background-color: colors.$hover_bg_color;
+            }
+            .DevicesButton:focus {
+                background-color: colors.$hover_bg_color;
+                outline: 0;
+            }
+
+            .DevicesContainer {
+                background-color: colors.$bg_color;
+                margin-top: $filler_bars_thickness;                
+                border-radius: $widget_bradius;
+
+                button {
+                    color: colors.$accent_color;
+                    border-radius: $widget_bradius;
+                }
+                button:hover {
+                    background-color: colors.$hover_bg_color;
+                }
+                button:focus {
+                    background-color: colors.$hover_bg_color;
+                    outline: 0;
+                }
+
+                .active {
+                    background-color: colors.$widget_secondary_bg_color;
+                    
+                }
+
+                .inactive {
+                    background-color: colors.$widget_bg_color;
+                }
+
+                .DeviceVolume {
+                    font-weight: normal;
+                }
+            }
+        }
+
+        .ThemeSettings {
+            margin-top: $filler_bars_thickness;
+            background-color: colors.$widget_bg_color;
+            border-radius: $widget_bradius;
+
+            .Title {
+                min-height: 2rem;
+                margin-left: $filler_bars_thickness;
+                margin-right: $filler_bars_thickness;
+
+                label {
+                    color: colors.$accent_color;
+                    padding: 0 0.6rem 0 0.6rem;
+                    font-size: $icons_font_size;
+                }
+            }
+
+            .Content {
+                padding: 4px;
+                margin: 2px;
+                background-color: colors.$bg_color;
+                border-radius: 0 0 $widget_bradius $widget_bradius;
+
+                .WallControl {
+                    margin: $filler_bars_thickness;
+                    .Border {
+                        background-color: colors.$widget_bg_color;
+                        padding: 2px;
+                        border-radius: $widget_bradius;
+
+                        .ColorsContainer {
+                            background-color: colors.$bg_color;
+                            padding: $filler_bars_thickness;
+                            border-radius: $widget_bradius;
+                            
+                            button {
+                                border: 0;
+                                min-width: 0.9rem;
+                                min-height: 0.9rem;
+                                padding-left: 0;
+                                padding-right: 0;
+                                border-radius: $circular_button_bradius;
+    
+                                &.AccentColor {
+                                    border: 1px solid colors.$accent_color;
+                                    background-color: colors.$accent_color;
+                                }
+                                &.WidgetSecondaryBgColor {
+                                    border: 1px solid colors.$widget_secondary_bg_color;
+                                    background-color: colors.$widget_secondary_bg_color;
+                                }
+                                &.WidgetBgColor {
+                                    border: 1px solid colors.$widget_bg_color;
+                                    background-color: colors.$widget_bg_color;
+                                }
+                                &.HoverBgColor {
+                                    border: 1px solid colors.$hover_bg_color;
+                                    background-color: colors.$hover_bg_color;
+                                }
+                                &.BgColor {
+                                    border: 1px solid colors.$widget_bg_color;
+                                    background-color: colors.$bg_color;
+                                }
+                            }
+                                                    
+    
+                        }
+                    }
+
+                    ActiveTheme {
+                        background-color: colors.$hover_bg_color;
+                    }
+
+                    button {
+                        min-width: 1.5rem;
+                        background-color: colors.$widget_bg_color;
+                        color: colors.$accent_color;
+                        border-radius: $circular_button_bradius;
+                        padding: 0rem 0.54rem 0rem 0.54rem;
+                    }
+                    button:hover {
+                        background-color: colors.$hover_bg_color;
+                    }
+                    button:focus {
+                        background-color: colors.$hover_bg_color;
+                        outline: 0;
+                    }
+                    button > label {
+                        font-size: $icons_font_size;
+                    }
+                }
+
+                .Themes {
+                    min-height: 6rem;
+                    margin: $filler_bars_thickness;
+
+                    button {                        
+                        background-color: colors.$widget_bg_color;
+                        color: colors.$accent_color;
+                        border-radius: $widget_bradius;
+                        
+                    }
+                    button:hover {
+                        background-color: colors.$hover_bg_color;
+                    }
+                    button:focus {
+                        background-color: colors.$hover_bg_color;
+                        outline: 0;
+                    }
+
+                }                
+            }
+
+
+            
+        }
+        
+        .PowerButtonsContainer {
+            margin-top: $filler_bars_thickness;
+            border-radius: $widget_bradius;
+            background-color: colors.$widget_bg_color;
+            padding: 2px;
+
+            .PowerButtons {
+                background-color: colors.$bg_color;
+                border-radius: $widget_bradius;
+                padding: $filler_bars_thickness;                
+
+                button {
+                    color: colors.$accent_color;
+                    background-color: colors.$widget_bg_color;
+                }
+
+                button > label {
+                    font-size: $icons_font_size;
+                }
+            
+                button:hover {
+                    background-color: colors.$hover_bg_color;
+                }
+                button:focus {
+                    background-color: colors.$hover_bg_color;
+                    outline: 0px;
                 }
             }
             
@@ -557,13 +917,13 @@ window.TopSpacer {
 
     .ColoredSpacer {
         transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         min-height: $top_height;
     }
 }
 
 window.FillerBar {
-    background-color: $bg_color;
+    background-color: colors.$bg_color;
     
     .LeftRightBox {
         min-width: $filler_bars_thickness;
@@ -575,7 +935,7 @@ window.FillerBar {
 }
 
 .Divisor {
-    background-color: $bg_color;
+    background-color: colors.$bg_color;
     min-height: $filler_bars_thickness;
 }
 
@@ -584,11 +944,11 @@ window.FillerBar {
 }
 
 .Corner {
-    background-color: $bg_color;
+    background-color: colors.$bg_color;
     border-radius: #{$bradius - 4.8px};
 }
 .WindowCorner {
-    background-color: $bg_color;
+    background-color: colors.$bg_color;
     border-radius: $bradius;
 }
 .TransparentSpacerCorner {
@@ -597,14 +957,16 @@ window.FillerBar {
 .ColoredSpacerCorner {
     margin-top: 2.75rem;
 }
+//When a scrollable has a box inside and renders its elements inside that box then it needs this to remove a gray border
+viewport {
+    all: unset;
+}
 
 // Notifications
 
 @function gtkalpha($c, $a) {
     @return string.unquote("alpha(#{$c},#{$a})");
 }
-
-$error: red;
 
 window.NotificationPopups {
     all: unset;
@@ -624,33 +986,33 @@ eventbox.Notification {
     >box {
         min-width: 300px;
         border-radius: $widget_bradius;
-        background-color: $bg_color;
+        background-color: colors.$bg_color;
         margin: .5rem 1rem .5rem 1rem;
         //box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);
         //border: 1pt solid gtkalpha($fg-color, .03);
-        border: 2px solid $widget_bg_color;
+        border: 2px solid colors.$widget_bg_color;
     }
 
     &.critical>box {
-        border: 1pt solid gtkalpha($error, .4);
+        border: 1pt solid gtkalpha(colors.$error, .4);
 
         .header {
 
             .app-name {
-                color: gtkalpha($error, .8);
+                color: gtkalpha(colors.$error, .8);
 
             }
 
             .app-icon {
-                color: gtkalpha($error, .6);
+                color: gtkalpha(colors.$error, .6);
             }
         }
     }
 
     .header {
         padding: .5rem;
-        color: $accent_color;
-        background-color: $widget_bg_color;
+        color: colors.$accent_color;
+        background-color: colors.$widget_bg_color;
         border-radius: 10px 10px 0 0;
 
         .app-icon {
@@ -671,24 +1033,27 @@ eventbox.Notification {
         }
 
         button {
-            color: $accent_color;
+
+            background-color: colors.$bg_color;
+            color: colors.$accent_color;
             padding: .2rem;
             min-width: 0;
             min-height: 0;
+
         }
     }
 
     .content {
         margin: 1rem;
         margin-top: .5rem;
-        color: $accent_color;
+        color: colors.$accent_color;
 
         .summary {
             font-size: 1.2em;
         }
 
         .image {
-            border: 1px solid gtkalpha($accent_color, .02);
+            border: 1px solid gtkalpha(colors.$accent_color, .02);
             margin-right: .5rem;
             border-radius: 9px;
             min-width: 100px;
@@ -713,5 +1078,52 @@ eventbox.Notification {
                 margin-right: 0;
             }
         }
+    }
+}
+
+// OSD
+window.OSD {
+
+    box.OSD {
+        border-radius: $bradius $bradius 0rem 0rem;
+        background-color: colors.$bg_color;
+        padding: 13px 16px;
+        //box-shadow: 3px 3px 7px 0 rgba(0,0,0,.4);
+        color: colors.$accent_color;
+    }
+
+    icon {
+        font-size: 1.6rem;
+    }
+
+    label {
+        font-size: 1.2rem;
+    }
+
+    levelbar {
+        
+        * {
+            border-bottom-color : colors.$accent_color;
+        }
+
+        trough {
+            border-radius: $widget_bradius;
+            margin: $filler_bars_thickness;
+        }
+
+        block {        
+            border-radius: $widget_bradius;
+            min-height: 0.8rem;
+        }
+    }
+}
+
+tooltip {
+    background-color: colors.$accent_color;
+    border-radius: $widget_bradius;
+    
+    * {
+        font-size: small;
+        font-style: normal;
     }
 }

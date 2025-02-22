@@ -19,6 +19,7 @@ import {
         SaveButtonVisible,
         WindowCornerStyle
     } from "../common/Variables";
+import MprisPlayers from './Player'
 
 const {START, CENTER,  END} = Gtk.Align;
 const buffer = new Gtk.TextBuffer();
@@ -72,7 +73,7 @@ const Whoami = () => {
         <box className="WhoamiBox">
             <box
                 className="ProfileImage"
-                css={`background-image: url('${PicturesPath.get()}/wallpapers-master/profile/profile.jpg')`}
+                css={`background-image: url('${PicturesPath.get()}/wallpapers/profile/profile.jpg')`}
             />
             <box className="Divider"/>
             <box className="UserInfo" vertical>
@@ -85,7 +86,7 @@ const Whoami = () => {
 
 const NetInfo = () => {
     return (
-        <button className="NetInfoButton" onClicked={OnClickNetworkButton}>
+        <button className="NetInfoButton" onClicked={OnClickNetworkButton} cursor="pointer">
             <centerbox>
                 <box className="IpSpeed" vertical >
                     <label className="Ip" label={bind(NetIp)} />
@@ -145,6 +146,11 @@ const SysInfo = () => {
     );
 }
 
+const AudioPlayer = () => { 
+    return <box className='AudioPlayerContainer'>
+        <MprisPlayers />
+    </box>
+}
 const QuickNote = () => {
     const TextView = astalify(Gtk.TextView);
 
@@ -153,8 +159,8 @@ const QuickNote = () => {
             <box className="Title" homogeneous>
                 <button
                     visible={bind(SaveButtonVisible)}
-                    className="ClearSave" 
-                    label={""}  
+                    className="ClearSave"
+                    label={""}
                     halign={START}
                     onClick={clearNote}
                 />
@@ -175,7 +181,7 @@ const QuickNote = () => {
                         editable={true}
                         cursor_visible={true}
                         sensitive={true}
-                        focus_on_click={true}
+                        focus_on_click={true}                        
                     />
                 </scrollable>
             </box>
@@ -187,8 +193,9 @@ export default function () {
     return (
         <box>
             <box className="Dashboard" vertical={true} hexpand={false}>
-                <Whoami />
+                <Whoami />                
                 <SysInfo />
+                <AudioPlayer />
                 <NetInfo />
                 <QuickNote />
             </box>

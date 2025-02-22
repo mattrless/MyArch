@@ -66,7 +66,7 @@ export default function () {
             <box className="Clipboard" vertical>
                 <overlay>                    
                     <scrollable>
-                        <box spacing={6} vertical={true}>
+                        <box spacing={6} vertical>
                             {                                
                                 bind(Clipboard).as(cb => {
                                     const items = cb.split('\n').map((line, index, array) => {                                        

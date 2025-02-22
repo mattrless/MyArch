@@ -10,7 +10,7 @@ export const TopLeftWindowVisible = Variable(false);
 export const DashboardVisible = Variable(false);
 export const AppLauncherVisible = Variable(false);
 export const TopLeftCurrentWindow = Variable("Default");
-export const StyleLabel = Variable("󰖯");
+export const StyleLabel = Variable("");
 export const TopBarStyle = Variable("TransparentSpacer");
 export const WindowCornerStyle = Variable("TransparentSpacerCorner");
 
@@ -21,7 +21,7 @@ export const Keymode = Variable(NONE);
 
 /* Dashboard */
 export const HomePath = Variable("/home/matterless");
-export const PicturesPath = Variable("/home/matterless/Pictures");
+export const PicturesPath = Variable(HomePath.get() + "/Pictures");
 export const UserHostname = Variable("");
 execAsync(["bash", "-c", 'echo "$USER@$HOSTNAME"'])
     .then((out) => {
@@ -79,7 +79,7 @@ export const NetType = Variable("").poll(20000,
         if (firstType) {
             let type = firstType.split(":")[1].toString();
             if(type == 'ethernet'){
-                type = '';
+                type = '󰌗';
             }
             return type;
         }
@@ -191,3 +191,8 @@ export const FullDate = Variable<string>("").poll(3000, () =>
 
 export const SilenceNotificationsLabel = Variable("");
 export const DoNotDisturb = Variable(false);
+
+// Settings
+export const DevicesLabel = Variable("");
+export const AudioDevicesVisibility = Variable(false);
+export const AGSPath = Variable(HomePath.get() + "/.config/ags");

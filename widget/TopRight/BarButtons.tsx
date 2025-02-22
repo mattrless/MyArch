@@ -10,7 +10,9 @@ import {    ClipboardVisible,
             TopRightWindowKeymode,
             time,
             TrayIconButtonLabel,
-            TrayIconsVisible            
+            TrayIconsVisible,
+            AudioDevicesVisibility,
+            DevicesLabel
         } from "../common/Variables";
 import Wp from "gi://AstalWp";
 import Tray from "gi://AstalTray"
@@ -23,75 +25,70 @@ const FADE_DURATION = 1000;
 
 
 export const OnClickClipboardButton = () => {
-    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() === "Settings") {
+    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() !== "Clipboard") {
         OnClickCloseTRButton();
         setTimeout(() => {
             TopRightWindowKeymode.set(Astal.Keymode.EXCLUSIVE);
-            
             ClipboardVisible.set(true);
             TopRightWindowVisible.set(true);
             TopRightCurrentWindow.set("Clipboard");
         }, SLIDE_TIMEOUT);
     } else if (!TopRightWindowVisible.get()) {
         TopRightWindowKeymode.set(Astal.Keymode.EXCLUSIVE);
-
-        TopRightWindowVisible.set(true);
         ClipboardVisible.set(true);
+        TopRightWindowVisible.set(true);
         TopRightCurrentWindow.set("Clipboard");
     }
-}
+};
 
 export const OnClickNotificationCenterButton = () => {
-    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() === "Settings") {
+    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() !== "NotificationCenter") {
         OnClickCloseTRButton();
         setTimeout(() => {
             TopRightWindowKeymode.set(Astal.Keymode.ON_DEMAND);
-            
             NotificationCenterVisible.set(true);
             TopRightWindowVisible.set(true);
             TopRightCurrentWindow.set("NotificationCenter");
         }, SLIDE_TIMEOUT);
     } else if (!TopRightWindowVisible.get()) {
         TopRightWindowKeymode.set(Astal.Keymode.ON_DEMAND);
-
-        TopRightWindowVisible.set(true);
         NotificationCenterVisible.set(true);
+        TopRightWindowVisible.set(true);
         TopRightCurrentWindow.set("NotificationCenter");
     }
-}
+};
 
-function OnClickSettingsButton() {
-    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() === "Clipboard") {
+export const OnClickSettingsButton = () => {
+    if (TopRightWindowVisible.get() && TopRightCurrentWindow.get() !== "Settings") {
         OnClickCloseTRButton();
         setTimeout(() => {
             TopRightWindowKeymode.set(Astal.Keymode.ON_DEMAND);
             SettingsVisible.set(true);
-            
             TopRightWindowVisible.set(true);
             TopRightCurrentWindow.set("Settings");
-
         }, SLIDE_TIMEOUT);
     } else if (!TopRightWindowVisible.get()) {
         TopRightWindowKeymode.set(Astal.Keymode.ON_DEMAND);
         SettingsVisible.set(true);
-        
         TopRightWindowVisible.set(true);
         TopRightCurrentWindow.set("Settings");
     }
-}
+};
 
-export const OnClickCloseTRButton= () => {
-    
+export const OnClickCloseTRButton = () => {
     ClipboardVisible.set(false);
     NotificationCenterVisible.set(false);
     SettingsVisible.set(false);
     TopRightWindowVisible.set(false);
+    AudioDevicesVisibility.set(false);
+    DevicesLabel.set("");
     TopRightWindowKeymode.set(Astal.Keymode.NONE);
 
     setTimeout(() => {
         TopRightCurrentWindow.set("Default");
     }, SLIDE_TIMEOUT);
-}
+};
+
 
 function createMenu(menuModel: Gio.MenuModel, actionGroup: Gio.ActionGroup): Gtk.Menu {
     const menu = Gtk.Menu.new_from_model(menuModel);
@@ -166,6 +163,7 @@ const TrayIconsButton = () => {
             </eventbox>
 
             <eventbox
+                visible={bind(SettingsVisible().as((v: boolean) => !v))}
                 onClick={()=>{
                     speaker.mute = !speaker.mute;
                 }}
@@ -210,7 +208,7 @@ const SettingsButton = () => {
     
     return <AnimatedButton
         visibleVariable={SettingsVisible}
-        openWindowLabel=""
+        openWindowLabel=""
         closeWindowLabel="󰅙"
         onClick={OnClickSettingsButton}
         btnClassName="SettingsButton"

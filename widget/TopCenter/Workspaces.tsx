@@ -69,7 +69,7 @@ const Workspaces = () => {
     );
 }
 
-export const WorkspacesBox = () => {    
+export const WorkspacesBox = () => {
     return (
         <centerbox>
             <box halign={CENTER}>
