@@ -175,9 +175,11 @@ const AnimatedButton = ({
                 <button
                     visible={visibleVariable().as((v: boolean) => !v)}
                     className={`Button ${btnClassName}`}
-                    label={openWindowLabel}
-                    onClicked={onClick}
-                />
+                    //label={openWindowLabel}
+                    onClicked={onClick}                    
+                >
+                    <label label={openWindowLabel}></label>
+                </button>
             </revealer>
 
             <revealer

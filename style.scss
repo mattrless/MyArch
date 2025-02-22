@@ -8,6 +8,10 @@ $circular_button_bradius: 50%;
 $filler_bars_thickness : 0.65rem;
 $icons_font_size: 1.2rem;
 
+* {
+    font-family: Manrope;
+}
+
 window.TopLeftWindow {
     
     //To put the widget on the right position due to exclusivity equals IGNORE
@@ -27,7 +31,7 @@ window.TopLeftWindow {
         border: 0px;
         min-height: 1.5rem;
         margin: 0 $filler_bars_thickness #{$filler_bars_thickness + 0.08rem} 0;
-        transition: background-color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;        
 
         &.AppNameEntry{
             padding: 0 0.6rem 0 0.6rem;            
@@ -36,16 +40,24 @@ window.TopLeftWindow {
         &.AppLauncherButton {
             padding: 0 0.54rem 0 0.54rem;
             border-radius: $circular_button_bradius;
+            
+            label {
+                padding-right: 0.2rem;
+            }
         }
         &.DashboardButton{            
             padding: 0 0.6rem 0 0.6rem;
             min-width: 5.8rem;
             border-radius: $bradius;
-
+            font-weight: normal;
         }
         &.StyleButton{
             padding: 0 0.54rem 0 0.54rem;
             border-radius: $circular_button_bradius;
+
+            label {
+                padding-right: 0.4rem;
+            }
         }
     }
 
@@ -176,6 +188,7 @@ window.TopLeftWindow {
         }
 
         .AudioPlayerContainer {
+            margin-top: $filler_bars_thickness;
             padding: 2px;
             background-color: colors.$widget_bg_color;
             border-radius: $widget_bradius;
@@ -267,18 +280,26 @@ window.TopLeftWindow {
                 min-height: 80px;
             }
 
-            .RamUsage, .CpuUsage, .DiskUsage {
+            .RamUsage, .DiskUsage {
                 margin: $filler_bars_thickness;
                 label {
                     color: colors.$accent_color;
                     font-size: 40px;
+                    padding-right: 4px;
                 }
             }
 
             .RamUsage {
                 margin-left: 2rem;
             }
-
+            .CpuUsage {
+                margin: $filler_bars_thickness;
+                label {
+                    color: colors.$accent_color;
+                    font-size: 38px;
+                    padding-right: 12px;
+                }
+            }
             .DiskUsage {
                 margin-right: 2rem;
             }
@@ -465,7 +486,7 @@ window.TopRightWindow {
         border: 0px;
         min-height: 1.5rem;
         margin: 0 0 #{$filler_bars_thickness + 0.08rem} $filler_bars_thickness;
-        transition: background-color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;        
 
         &.TrayIconsButton {
             padding: 0 0.7rem 0 0.7rem;
@@ -486,12 +507,23 @@ window.TopRightWindow {
         &.SettingsButton {
             padding: 0 0.54rem 0 0.54rem;
             border-radius: $circular_button_bradius;
+
+            label {
+                padding-right: 6px;
+            }
         }
         &.NotificationCenterButton {
             padding: 0 0.6rem 0 0.6rem;
             min-width: 4rem;
             border-radius: $bradius;
-            //font-weight: normal;
+            font-weight: normal;
+        }
+        &.CloseButton {
+            padding: 0 0.54rem 0 0.54rem;
+            border-radius: $circular_button_bradius;
+            label {
+                padding-right: 2px;
+            }
         }
     }
 
@@ -524,6 +556,7 @@ window.TopRightWindow {
             .item {
                 color: colors.$accent_color;
                 padding-right: 0.1rem;
+                font-weight: normal;
             }
         }
         .ClipboardItem:hover {
@@ -817,13 +850,14 @@ window.TopRightWindow {
                                     border: 1px solid colors.$widget_bg_color;
                                     background-color: colors.$bg_color;
                                 }
+                                
                             }
                                                     
     
                         }
                     }
 
-                    ActiveTheme {
+                    .ActiveTheme {
                         background-color: colors.$hover_bg_color;
                     }
 
@@ -843,6 +877,7 @@ window.TopRightWindow {
                     }
                     button > label {
                         font-size: $icons_font_size;
+                        padding-right: 2px;
                     }
                 }
 
@@ -889,6 +924,7 @@ window.TopRightWindow {
 
                 button > label {
                     font-size: $icons_font_size;
+                    padding-right: 2px;
                 }
             
                 button:hover {

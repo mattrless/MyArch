@@ -132,7 +132,7 @@ function ChangeOnlyWallpaper() {
         })
         .catch(err => {
             console.error("Error ejecutando el script cambiar wallpaper:", err);
-            execAsync(`notify-send -u critical --app-name="Settings" "Wallpaper" "Error while applying wallpaper."`);
+            //execAsync(`notify-send -u critical --app-name="Settings" "Wallpaper" "Error while applying wallpaper."`);
         }
     );
 }
@@ -154,7 +154,7 @@ function ChangeWallpaperAndTheme() {
         })
         .catch(err => {
             console.error("Error ejecutando el script cambiar wallpaper y generar colores:", err);
-            execAsync(`notify-send -u critical --app-name="Settings" "Theme" "Error while applying wallpaper or generating theme."`);
+            //execAsync(`notify-send -u critical --app-name="Settings" "Theme" "Error while applying wallpaper or generating theme."`);
         }
     );
         

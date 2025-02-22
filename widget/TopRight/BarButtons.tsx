@@ -261,7 +261,9 @@ const AnimatedButton = ({
                     className={`Button ${btnClassName}`}
                     label={bind(openLabel)}
                     onClicked={onClick}
-                />
+                >
+                    <label label={openWindowLabel}></label>
+                </button>
             </revealer>
 
             <revealer
@@ -270,10 +272,11 @@ const AnimatedButton = ({
                 transitionDuration={FADE_DURATION}>
                 <button
                     visible={bind(visibleVariable)}
-                    className={`Button ${btnClassName}`}
-                    label={closeWindowLabel}
+                    className={btnClassName === 'NotificationCenterButton' ? `Button ${btnClassName}` : `Button CloseButton`}
                     onClicked={OnClickCloseTRButton}
-                />
+                >                    
+                    <label label={closeWindowLabel}></label>
+                </button>            
             </revealer>
         </box>
     );
