@@ -15,7 +15,7 @@ $icons_font_size: 1.2rem;
 window.TopLeftWindow {
     
     //To put the widget on the right position due to exclusivity equals IGNORE
-    .TopLeftSection {        
+    .TopLeftSection {
         margin-top: #{$filler_bars_thickness + 0.05rem};
         margin-left: #{$filler_bars_thickness + 0.05rem};
     }
@@ -141,7 +141,7 @@ window.TopLeftWindow {
                 margin-left: $filler_bars_thickness;
     
                 label {
-                    font-size: 18px;
+                    font-size: 20px;
                     color: colors.$accent_color;
                 }
             }
@@ -159,10 +159,12 @@ window.TopLeftWindow {
                 margin-top: $filler_bars_thickness;
                 color: colors.$accent_color;
                 font-size: 20px;
+                font-weight: normal;
             }
             .NetSpeed {
                 color: colors.$accent_color;
                 font-size: 16px;
+                font-weight: normal;
             }
 
             .NetInfoDivider {
@@ -604,7 +606,6 @@ window.TopRightWindow {
         }
 
         .CalendarContainer {
-            min-width: 24rem;
             background-color:colors.$widget_bg_color;
             border-radius: $widget_bradius;
 

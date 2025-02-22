@@ -8,9 +8,9 @@ import TopCenterWindow from "./widget/TopCenter/TopCenterWindow"
 import CloseTopLeftWindowArea from "./widget/TopLeft/CloseWindowArea"
 import CloseTopCenterWindowArea from "./widget/TopCenter/CloseTopCenterWindowArea"
 import CloseTopRightWindowArea from "./widget/TopRight/CloseTopRightWindowArea"
-import { OnClickAppLauncherButton, OnClickCloseButton } from "./widget/TopLeft/BarWidgets"
+import { OnClickAppLauncherButton, OnClickCloseButton, OnClickDashboardButton } from "./widget/TopLeft/BarWidgets"
 import { OnClickClipboardButton, OnClickCloseTRButton } from "./widget/TopRight/BarButtons"
-import { AppLauncherVisible, ClipboardVisible } from "./widget/common/Variables"
+import { AppLauncherVisible, ClipboardVisible, DashboardVisible } from "./widget/common/Variables"
 import NotificationPopups from "./widget/notifications/NotificationPopups"
 import { ScreenBottomLeftCorner, ScreenBottomRightCorner } from "./widget/common/Corners"
 import osd from "./widget/osd/osd"
@@ -46,13 +46,18 @@ App.start({
     //To toggle my no window widgets
     requestHandler(request: string, res: (response: any) => void) {
         if (request == "OpenAppLauncher") {
-            AppLauncherVisible.get() == true ? OnClickCloseButton() : OnClickAppLauncherButton();            
+            AppLauncherVisible.get() ? OnClickCloseButton() : OnClickAppLauncherButton();            
+            return res("done")
+        }
+        if (request == "OpenDashboard") {
+            DashboardVisible.get() ? OnClickCloseButton() : OnClickDashboardButton();            
             return res("done")
         }
         if (request == "OpenClipboard") {
-            ClipboardVisible.get() == true ? OnClickCloseTRButton() : OnClickClipboardButton();            
+            ClipboardVisible.get() ? OnClickCloseTRButton() : OnClickClipboardButton();            
             return res("done")
         }
+
 
         res("unknown command")
     },

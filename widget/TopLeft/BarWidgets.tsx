@@ -40,7 +40,7 @@ export const OnClickAppLauncherButton = () => {
     }
 }
 
-function OnClickDashboardButton() {
+export function OnClickDashboardButton() {
     if (TopLeftWindowVisible.get() && TopLeftCurrentWindow.get() === "AppLauncher") {
         OnClickCloseButton();
         setTimeout(() => {
