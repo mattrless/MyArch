@@ -4,7 +4,7 @@ import { speeds } from './NetSpeed'
 import { WindowTopLeftCorner } from "../common/Corners";
 import { bind } from "astal/binding"
 import { OnClickCloseButton } from "./BarWidgets";
-import { exec } from "astal/process";
+import { exec, execAsync } from "astal/process";
 import {
         HomePath,
         PicturesPath,
@@ -37,7 +37,7 @@ function OnClickSaveNoteButton(){
         let start: Gtk.TextIter = buffer.get_start_iter();
         let text: string = buffer.get_text(start, buffer.get_end_iter(), true);
 
-        if(text){            
+        if(text){
             const out = exec(HomePath.get() + '/.config/ags/scripts/quick_note.sh ' + '"' + text + '"')
             
             if(out.startsWith("Note saved at"))
@@ -45,7 +45,9 @@ function OnClickSaveNoteButton(){
 
             start = buffer.get_start_iter();
             buffer.insert(start, "\n\n\n\n\t" + out, -1);
-            
+
+            execAsync(`notify-send --app-name="Quick Note" "Note" "${out}"`);
+
             if (out.startsWith("Note saved at")) {
                 setTimeout(() => {
                     clearNote();
