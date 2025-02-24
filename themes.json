@@ -1,5 +1,5 @@
 {
-    "Snowburst": {
+    "Nocturne": {
         "dark": {
             "wallpaper": "/home/matterless/Pictures/wallpapers/all/032.jpg",
             "accent_color": "#9facec",
@@ -35,7 +35,42 @@
             "hover_bg_color": "#B8A13A",
             "bg_color": "#FAF1C8"
         }
-
+    },
+    "Monochrome": {
+        "dark": {
+            "wallpaper": "/home/matterless/Pictures/wallpapers/all/MG_1989_1.jpg",
+            "accent_color": "#DDDFE2",
+            "widget_secondary_bg_color": "#ebedf0",
+            "widget_bg_color": "#302f2f",
+            "hover_bg_color": "#555552",
+            "bg_color": "#161616"
+        },
+        "light": {
+            "wallpaper": "/home/matterless/Pictures/wallpapers/all/sqleton-frust.png",
+            "accent_color": "#4B4B4B",
+            "widget_secondary_bg_color": "#F5F5F5",
+            "widget_bg_color": "#cfcfcf",
+            "hover_bg_color": "#E0E0E0",
+            "bg_color": "#FAFAFA"
+        }
+    },
+    "Nord": {
+        "dark": {
+            "wallpaper": "/home/matterless/Pictures/wallpapers/all/ls-forest-eagle.jpg",
+            "accent_color": "#81A1C1",
+            "widget_secondary_bg_color": "#D8DEE9",
+            "widget_bg_color": "#434C5E",
+            "hover_bg_color": "#D8DEE9",
+            "bg_color": "#2E3440"
+        },
+        "light": {
+            "wallpaper": "/home/matterless/Pictures/wallpapers/all/1711768656723.png",
+            "accent_color": "#2D3848",
+            "widget_secondary_bg_color": "#81A1C1",
+            "widget_bg_color": "#E2E8F0",
+            "hover_bg_color": "#b9cce5",
+            "bg_color": "#F9FAFB"
+        }
     }
 
 }

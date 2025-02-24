@@ -42,7 +42,7 @@ window.TopLeftWindow {
             border-radius: $circular_button_bradius;
             
             label {
-                padding-right: 0.2rem;
+                //padding-right: 0.2rem;
             }
         }
         &.DashboardButton{            
@@ -56,7 +56,7 @@ window.TopLeftWindow {
             border-radius: $circular_button_bradius;
 
             label {
-                padding-right: 0.4rem;
+                //padding-right: 0.4rem;
             }
         }
     }
@@ -287,7 +287,7 @@ window.TopLeftWindow {
                 label {
                     color: colors.$accent_color;
                     font-size: 40px;
-                    padding-right: 4px;
+                    //padding-right: 4px;
                 }
             }
 
@@ -299,7 +299,7 @@ window.TopLeftWindow {
                 label {
                     color: colors.$accent_color;
                     font-size: 38px;
-                    padding-right: 12px;
+                    //padding-right: 12px;
                 }
             }
             .DiskUsage {
@@ -511,7 +511,7 @@ window.TopRightWindow {
             border-radius: $circular_button_bradius;
 
             label {
-                padding-right: 6px;
+                //padding-right: 6px;
             }
         }
         &.NotificationCenterButton {
@@ -524,7 +524,7 @@ window.TopRightWindow {
             padding: 0 0.54rem 0 0.54rem;
             border-radius: $circular_button_bradius;
             label {
-                padding-right: 2px;
+                //padding-right: 2px;
             }
         }
     }
@@ -620,7 +620,7 @@ window.TopRightWindow {
                     color: colors.$accent_color;
                     border: 0;
     
-                    .button {                        
+                    .button {
                         background-color: colors.$widget_bg_color;
                     }
     
@@ -742,7 +742,7 @@ window.TopRightWindow {
                 background-color: colors.$widget_bg_color;
                 color: colors.$accent_color;
                 border: 0px;
-                padding: 0 0.46rem 0 0.46rem;
+                padding: 0 0.45rem 0 0.45rem;
                 border-radius: $circular_button_bradius;
             }
             .DevicesButton > label {
@@ -878,12 +878,12 @@ window.TopRightWindow {
                     }
                     button > label {
                         font-size: $icons_font_size;
-                        padding-right: 2px;
+                        //padding-right: 2px;
                     }
                 }
 
                 .Themes {
-                    min-height: 6rem;
+                    min-height: 8rem;
                     margin: $filler_bars_thickness;
 
                     button {                        
@@ -925,7 +925,7 @@ window.TopRightWindow {
 
                 button > label {
                     font-size: $icons_font_size;
-                    padding-right: 2px;
+                    //padding-right: 2px;
                 }
             
                 button:hover {
