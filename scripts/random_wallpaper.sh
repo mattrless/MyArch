@@ -1,20 +1,19 @@
 #!/bin/bash
 
-# Verificar si se proporcionó una ruta como argumento
 if [[ -z "$1" ]]; then
     echo "Error: Debes proporcionar la ruta de una imagen."
     exit 1
 fi
 
 # Extraer la carpeta contenedora
-dir=$(dirname "$1")
+dir=$(dirname "$1")"/"
 
 # Obtener una imagen aleatoria diferente a la proporcionada
-file=$(find "$dir" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.bmp" \) | shuf -n 1)
+file=$(find "$dir" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.bmp" \) | shuf -n 1)
 
 # Verificar si se encontró una imagen y si es diferente a la original
-while [[ "$file" == "$1" ]]; do
-    file=$(find "$dir" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.bmp" \) | shuf -n 1)
+while [[ -n "$file" && "$file" == "$1" ]]; do
+    file=$(find "$dir" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.bmp" \) | shuf -n 1)
 done
 
 # Verificar si se obtuvo una imagen válida
