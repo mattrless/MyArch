@@ -80,6 +80,8 @@ export const NetType = Variable("").poll(20000,
             let type = firstType.split(":")[1].toString();
             if(type == 'ethernet'){
                 type = '󰌗';
+            } else {
+                type = '⭘';
             }
             return type;
         }

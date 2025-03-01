@@ -511,7 +511,7 @@ window.TopRightWindow {
             border-radius: $circular_button_bradius;
 
             label {
-                //padding-right: 6px;
+                padding-right: 1px;
             }
         }
         &.NotificationCenterButton {
