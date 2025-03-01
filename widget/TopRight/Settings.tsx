@@ -99,6 +99,33 @@ const Power = () => {
     )
 }
 
+async function updateAgsTemplate(){
+    let template: string = "";
+    if (ThemeMode.get() == 'light') {
+        template = `$accent_color: {{colors.primary.default.hex}};
+            $widget_secondary_bg_color: {{colors.secondary_fixed_dim.default.hex}};
+            $widget_bg_color: {{colors.primary_fixed_dim.default.hex}};
+            $hover_bg_color: {{colors.primary_container.default.hex}};
+            $bg_color: {{colors.background.default.hex}};
+            $error: red;`;
+    } else {
+        template = `$accent_color: {{colors.primary.default.hex}};
+            $widget_secondary_bg_color: {{colors.secondary_container.default.hex}};
+            $widget_bg_color: {{colors.surface_bright.default.hex}};
+            $hover_bg_color: {{colors.surface_container.default.hex}};
+            $bg_color: {{colors.background.default.hex}};
+            $error: red;`;
+    }
+
+    try {
+        
+        const result = await execAsync(HomePath.get() + `/.config/ags/scripts/update_ags_colors_template.sh "${template}"`);
+        console.log("Ags/Astal template updated: ", result);
+    } catch (error) {
+        console.error("Error while updating update_ags_colors_template.sh:", error);
+    }
+}
+
 function generateSCSS(theme:any) {
     return `
         $accent_color: ${theme.colors.accent_color};
@@ -139,6 +166,7 @@ function ChangeOnlyWallpaper() {
 
 function ChangeWallpaperAndTheme() {
     OnClickCloseTRButton();
+    updateAgsTemplate();
     execAsync(HomePath.get() + '/.config/ags/scripts/wallpaper.sh ' + ThemeMode.get())
         .then(out => {
             const outParts = out.trim().split("\n");
@@ -191,6 +219,7 @@ async function ChangeThemeModeOnCustomTheme() {
 async function ChangeOnlyThemeMode() {
     ThemeMode.set(ThemeMode.get() == 'light' ? 'dark' : 'light');
     exec(`gsettings set org.gnome.desktop.interface color-scheme 'prefer-${ThemeMode.get()}'`);
+    updateAgsTemplate();
 
     if (CurrentTheme.get() == 'custom') {        
         ChangeThemeModeOnCustomTheme();
@@ -211,7 +240,7 @@ async function ChangeOnlyThemeMode() {
 async function ChangeThemeModeAndWallpaper() {
     ThemeMode.set(ThemeMode.get() == 'light' ? 'dark' : 'light');
     exec(`gsettings set org.gnome.desktop.interface color-scheme 'prefer-${ThemeMode.get()}'`);
-
+    updateAgsTemplate();
     if (CurrentTheme.get() == 'custom') {
         ChangeThemeModeOnCustomTheme();
     } else {
