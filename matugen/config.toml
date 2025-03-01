@@ -1,0 +1,41 @@
+[config.wallpaper]
+command = "swww"
+arguments = [
+    "img",
+    "--transition-type", "grow",
+    "--transition-pos", "top-right",
+    "--transition-duration", "2",
+    "--transition-fps", "60"
+]
+set = true
+
+[templates.ags-astal]
+input_path = '~/.config/matugen/ags-astal-colors.scss'
+output_path = '~/.config/ags/colors.scss'
+
+[templates.kitty]
+input_path = '~/.config/matugen/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+
+[templates.gtk3]
+input_path = '~/.config/matugen/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+
+[templates.gtk4]
+input_path = '~/.config/matugen/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.hyprland]
+input_path = '~/.config/matugen/hyprland-colors.conf'
+output_path = '~/.config/hypr/general.conf'
+post_hook = 'hyprctl reload'
+
+[templates.test]
+input_path = '~/.config/matugen/every_color.conf'
+output_path = '~/.config/matugen/test/colores.conf'
+
+# [config.custom_keywords]
+# font_family = ""
+
+# [config.custom_colors]
+# red = "#FF0000"

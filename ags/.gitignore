@@ -1,0 +1,5 @@
+!*
+@girs/
+node_modules/
+decoded_item
+decoded_result
