@@ -60,12 +60,9 @@ export function getThemeColorsAndWallpaper(themeName: string, mode: string) {
         console.error(`Tema ${themeName} no encontrado`);
     }
     
-    return null; // Si no encuentra el tema o el modo, retorna null
+    return null;
 }
 
-
-// Opcional: Si necesitas persistir cambios desde la UI
-// Themes.subscribe(saveThemes);
 function generateSCSS(themeConfig:any) {
     return `
         $accent_color: ${themeConfig.accent_color};
