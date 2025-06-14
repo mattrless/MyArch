@@ -17,61 +17,63 @@ export const RoundedCorner = (
                 ${place.includes('bottom') ? '-1px' : '0'}
                 ${place.includes('left') ? '-1px' : '0'};
         `}>
-        <drawingarea
+        {[
+            <drawingarea
             
-            className={cornerClassName}
-            setup={(widget) => {
-                const styleContext = widget.get_style_context();
+                className={cornerClassName}
+                setup={(widget) => {
+                    const styleContext = widget.get_style_context();
 
-                let radius = styleContext.get_property('border-radius', Gtk.StateFlags.NORMAL) as number;
-
-                widget.set_size_request(radius, radius);
-
-                widget.connect('draw', (_, cairoContext: Cairo.Context) => {
-                    const bgColor = styleContext.get_background_color(Gtk.StateFlags.NORMAL);
-                    const borderColor = styleContext.get_color(Gtk.StateFlags.NORMAL);
-                    const borderWidth = styleContext.get_border(Gtk.StateFlags.NORMAL).left;
-
-                    radius = styleContext.get_property('border-radius', Gtk.StateFlags.NORMAL) as number;
+                    let radius = styleContext.get_property('border-radius', Gtk.StateFlags.NORMAL) as number;
 
                     widget.set_size_request(radius, radius);
 
-                    switch (place) {
-                        case 'topleft':
-                            cairoContext.arc(radius, radius, radius, Math.PI, 3 * Math.PI / 2);
-                            cairoContext.lineTo(0, 0);
-                            break;
+                    widget.connect('draw', (_, cairoContext: Cairo.Context) => {
+                        const bgColor = styleContext.get_background_color(Gtk.StateFlags.NORMAL);
+                        const borderColor = styleContext.get_color(Gtk.StateFlags.NORMAL);
+                        const borderWidth = styleContext.get_border(Gtk.StateFlags.NORMAL).left;
 
-                        case 'topright':
-                            cairoContext.arc(0, radius, radius, 3 * Math.PI / 2, 2 * Math.PI);
-                            cairoContext.lineTo(radius, 0);
-                            break;
+                        radius = styleContext.get_property('border-radius', Gtk.StateFlags.NORMAL) as number;
 
-                        case 'bottomleft':
-                            cairoContext.arc(radius, 0, radius, Math.PI / 2, Math.PI);
-                            cairoContext.lineTo(0, radius);
-                            break;
+                        widget.set_size_request(radius, radius);
 
-                        case 'bottomright':
-                            cairoContext.arc(0, 0, radius, 0, Math.PI / 2);
-                            cairoContext.lineTo(radius, radius);
-                            break;
-                    }
+                        switch (place) {
+                            case 'topleft':
+                                cairoContext.arc(radius, radius, radius, Math.PI, 3 * Math.PI / 2);
+                                cairoContext.lineTo(0, 0);
+                                break;
 
-                    cairoContext.closePath();
-                    cairoContext.setSourceRGBA(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
-                    cairoContext.fill();
-                    cairoContext.setLineWidth(borderWidth);
-                    cairoContext.setSourceRGBA(
-                        borderColor.red,
-                        borderColor.green,
-                        borderColor.blue,
-                        borderColor.alpha,
-                    );
-                    cairoContext.stroke();
-                });
-            }}
-        />
+                            case 'topright':
+                                cairoContext.arc(0, radius, radius, 3 * Math.PI / 2, 2 * Math.PI);
+                                cairoContext.lineTo(radius, 0);
+                                break;
+
+                            case 'bottomleft':
+                                cairoContext.arc(radius, 0, radius, Math.PI / 2, Math.PI);
+                                cairoContext.lineTo(0, radius);
+                                break;
+
+                            case 'bottomright':
+                                cairoContext.arc(0, 0, radius, 0, Math.PI / 2);
+                                cairoContext.lineTo(radius, radius);
+                                break;
+                        }
+
+                        cairoContext.closePath();
+                        cairoContext.setSourceRGBA(bgColor.red, bgColor.green, bgColor.blue, bgColor.alpha);
+                        cairoContext.fill();
+                        cairoContext.setLineWidth(borderWidth);
+                        cairoContext.setSourceRGBA(
+                            borderColor.red,
+                            borderColor.green,
+                            borderColor.blue,
+                            borderColor.alpha,
+                        );
+                        cairoContext.stroke();
+                    });
+                }}
+            />
+        ]}
     </box>
 );
 
@@ -109,33 +111,27 @@ export const WindowBottomRightCorner = () => (
 );
 
 export const ScreenBottomLeftCorner = (gdkmonitor: Gdk.Monitor) => (
-    
     <window        
         gdkmonitor={gdkmonitor}
-        name="bcorners"
+        name="bcorners-left"
         className="aux"
         layer={Astal.Layer.TOP}
         exclusivity={Astal.Exclusivity.NORMAL}
         anchor={ BOTTOM | LEFT }
         clickThrough={true}
-        >
-        <WindowBottomLeftCorner />
-    </window>
-    
+        child={<WindowBottomLeftCorner />}
+    />
 );
 
 export const ScreenBottomRightCorner = (gdkmonitor: Gdk.Monitor) => (
-    
     <window        
         gdkmonitor={gdkmonitor}
-        name="bcorners"
+        name="bcorners-right"
         className="aux"
         layer={Astal.Layer.TOP}
         exclusivity={Astal.Exclusivity.NORMAL}
         anchor={ BOTTOM | RIGHT }
         clickThrough={true}
-        >
-        <WindowBottomRightCorner />
-    </window>
-    
+        child={<WindowBottomRightCorner />}
+    />
 );
