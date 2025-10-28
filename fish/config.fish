@@ -14,3 +14,4 @@ if test $TERM = "xterm-kitty"
     end
 end
 
+abbr --add l ls
