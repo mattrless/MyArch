@@ -20,8 +20,9 @@ cssReload;
 App.start({
     //css: style,
     main() {                
-        App.get_monitors().map((gdkmonitor) => {
-            
+        const gdkmonitor = App.get_monitors()[0];
+
+        if (gdkmonitor) {
             TopSpacer(gdkmonitor);
             CloseTopLeftWindowArea(gdkmonitor);
             CloseTopCenterWindowArea(gdkmonitor);
@@ -40,7 +41,7 @@ App.start({
             BottomFillerBar(gdkmonitor);
             
             NotificationPopups(gdkmonitor);
-        });
+        }
         
     },
     //To toggle my no window widgets
