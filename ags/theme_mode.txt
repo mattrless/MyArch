@@ -1,3 +1,3 @@
 custom
-light
-/home/matterless/Pictures/wallpapers/New/wallhaven-wewl9r_3840x2160.png
+dark
+/home/matterless/Pictures/wallpapers/New/a_cartoon_of_a_girl_holding_a_bouquet_of_flowers.webp

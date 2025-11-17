@@ -93,7 +93,7 @@ const Power = () => {
             <centerbox className="PowerButtons">
                 <button label='' halign={START} onClick={()=>{execAsync(["bash", "-c", 'hyprctl dispatch exit'])}}/>
                 <button label='' halign={CENTER} onClick={()=>{exec("bash -c reboot");}}/>
-                <button label='' halign={END} onClick={()=>{execAsync(["bash", "-c", 'shutdown now'])}}/>
+                <button label='󰤆' halign={END} onClick={()=>{execAsync(["bash", "-c", 'shutdown now'])}}/>
             </centerbox>
         </box>        
     )
