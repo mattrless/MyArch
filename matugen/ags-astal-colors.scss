@@ -1,6 +1,6 @@
 $accent_color: {{colors.primary.default.hex}};
-            $widget_secondary_bg_color: {{colors.secondary_container.default.hex}};
-            $widget_bg_color: {{colors.surface_bright.default.hex}};
-            $hover_bg_color: {{colors.surface_container.default.hex}};
+            $widget_secondary_bg_color: {{colors.secondary_fixed_dim.default.hex}};
+            $widget_bg_color: {{colors.primary_fixed_dim.default.hex}};
+            $hover_bg_color: {{colors.primary_container.default.hex}};
             $bg_color: {{colors.background.default.hex}};
             $error: red;
