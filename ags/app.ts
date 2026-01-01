@@ -24,9 +24,9 @@ App.start({
 
         if (gdkmonitor) {
             TopSpacer(gdkmonitor);
-            CloseTopLeftWindowArea(gdkmonitor);
-            CloseTopCenterWindowArea(gdkmonitor);
-            CloseTopRightWindowArea(gdkmonitor);
+            // CloseTopLeftWindowArea(gdkmonitor);
+            // CloseTopCenterWindowArea(gdkmonitor);
+            // CloseTopRightWindowArea(gdkmonitor);
             TopLeftWindow(gdkmonitor);
 
             TopCenterWindow(gdkmonitor);
