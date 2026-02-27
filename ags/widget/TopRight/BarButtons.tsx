@@ -249,6 +249,7 @@ const AnimatedButton = ({
     const openLabel = openWindowLabel instanceof Binding
         ? openWindowLabel
         : bind({ get: () => openWindowLabel, subscribe: () => () => {} });
+    const openLabelClassName = btnClassName === 'NotificationCenterButton' ? 'ButtonTextLabel' : 'ButtonIconLabel';
 
     return (
         <box>
@@ -259,10 +260,9 @@ const AnimatedButton = ({
                 <button
                     visible={visibleVariable().as((v: boolean) => !v)}
                     className={`Button ${btnClassName}`}
-                    label={bind(openLabel)}
                     onClicked={onClick}
                 >
-                    <label label={openWindowLabel}></label>
+                    <label className={openLabelClassName} label={bind(openLabel)}></label>
                 </button>
             </revealer>
 
@@ -275,7 +275,7 @@ const AnimatedButton = ({
                     className={btnClassName === 'NotificationCenterButton' ? `Button ${btnClassName}` : `Button CloseButton`}
                     onClicked={OnClickCloseTRButton}
                 >                    
-                    <label label={closeWindowLabel}></label>
+                    <label className="ButtonIconLabel CloseIconLabel" label={closeWindowLabel}></label>
                 </button>            
             </revealer>
         </box>

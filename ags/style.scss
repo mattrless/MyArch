@@ -7,9 +7,12 @@ $widget_bradius: 15px;
 $circular_button_bradius: 50%;
 $filler_bars_thickness : 0.65rem;
 $icons_font_size: 1.2rem;
+$ui_font_stack: "Manrope", "Noto Sans", sans-serif;
+$icon_font_stack: "Symbols Nerd Font", "JetBrainsMono Nerd Font", "FiraCode Nerd Font", "Noto Sans Symbols2", sans-serif;
 
 * {
-    font-family: Manrope;
+    font-family: $ui_font_stack;
+    // font-weight: 400;
 }
 
 window.TopLeftWindow {
@@ -469,6 +472,15 @@ window.TopCenterWindow {
 }
 
 window.TopRightWindow {
+    .ButtonIconLabel {
+        font-family: $icon_font_stack;
+        font-weight: 400;
+    }
+
+    .ButtonTextLabel {
+        font-family: $ui_font_stack;
+        font-weight: 400;
+    }
     
     //To put the widget on the right position due to exclusivity equals IGNORE
     .TopRightSection {
@@ -503,15 +515,23 @@ window.TopRightWindow {
             }
         }
         &.ClipboardButton {
-            padding: 0 0.54rem 0 0.54rem;
-            border-radius: $circular_button_bradius;
-        }
-        &.SettingsButton {
-            padding: 0 0.6rem 0 0.48rem;
+            padding: 0;
+            min-width: 2rem;
+            min-height: 2rem;
             border-radius: $circular_button_bradius;
 
-            label {
-                //padding-right: 1px;                
+            > label {
+                margin: 0;
+            }
+        }
+        &.SettingsButton {
+            padding: 0;
+            min-width: 2rem;
+            min-height: 2rem;
+            border-radius: $circular_button_bradius;
+
+            > label {
+                margin: 0;
             }
         }
         &.NotificationCenterButton {
@@ -521,13 +541,17 @@ window.TopRightWindow {
             font-weight: normal;
         }
         &.CloseButton {
-            padding: 0 0.54rem 0 0.54rem;
+            padding: 0;
+            min-width: 2rem;
+            min-height: 2rem;
             border-radius: $circular_button_bradius;
-            label {
-                //padding-right: 2px;
+
+            > label {
+                margin: 0;
             }
         }
     }
+
 
     .Button > label {
         font-size: $icons_font_size;
